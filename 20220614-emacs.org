@@ -9,12 +9,13 @@
 #+OPTIONS: num:nil
 #+MACRO: vocabulaire *📚 Vocabulaire*
 #+MACRO: definitionofdone *🎯 /Definition of done/*
-#+MACRO: flecheverslebas @@html:<span style="font: 2rem bold; color: var(--r-link-color);">˅</span>@@
+#+MACRO: flecheverslebas @@html:<span style="font: 3rem bold; display: inline-block; color: var(--r-link-color);">˅</span>@@
+#+MACRO: lettrine @@html:<span style="display: inline; vertical-align: 0%; font-size: 2rem">$1</span>@@
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/
 #+REVEAL_HLEVEL: 2
 #+REVEAL_HEAD_PREAMBLE: <style type="text/css">
 #+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
-#+REVEAL_HEAD_PREAMBLE:  small { font-size: 0.5rem; }
+#+REVEAL_HEAD_PREAMBLE:  .reveal small { display: inline; }
 #+REVEAL_HEAD_PREAMBLE: </style>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg
 #+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.3
@@ -35,7 +36,7 @@
 ** But #1 : installation
 - Pour le présent dojo : version minimale = Emacs 26 (celui d'Ubuntu Focal), mais plus récent ≡ mieux
 
-💡🥱 @@html:<small>@@
+@@html:<small>@@{{{lettrine(💡🥱)}}}
 Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
 @@html:</small>@@
 
@@ -50,7 +51,7 @@ Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
 - Un seul [[https://github.com/domq/domq.github.io/blob/main/20220614-emacs.org][fichier source]]
 - 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][org-reveal]]
 
-↕️ @@html:<small>@@
+@@html:<small>@@{{{lettrine(↕️)}}}
 Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche vers le bas {{{flecheverslebas}}} permet de naviguer vers des informations supplémentaires, que le présentateur «sautera» peut-être faute de temps.
 @@html:</small>@@
 
