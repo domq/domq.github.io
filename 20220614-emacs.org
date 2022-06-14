@@ -292,6 +292,9 @@ Avec l'aide de Google, je choisis, j'installe et je configure ce qui me plaît p
 
 
 *** Je sais faire tout seul ! 3/5
+    :PROPERTIES:
+    :custom_id: complétion
+    :END:
 
 J'évalue, configure et choisis un ou des frameworks de complétion :
   - company (recommandé)
@@ -326,7 +329,7 @@ Je consacre du temps pour maîtriser les “power features” d'Emacs 💪 :
 
 ** But #1 : framework(s) de complétion
 
-- L'embarras du choix...
+Si [[#complétion][pas déjà fait]]
 
 * Chapitre 3 : maîtrise
 
