@@ -433,3 +433,5 @@ org-mode comme un outil de carnet de laboratoire :
 - Choisir un dialecte «moderne»
   - [[https://www.gnu.org/software/emacs/manual/html_mono/cl.html][Paquetage cl]]
   - =lexical-binding: t=
+- Choisir des premiers buts simples, comme
+  - supprimer un message perturbant avec =advice-add=
