@@ -1,0 +1,209 @@
+#+TITLE: EMACS en partant de zéro
+#+SUBTITLE: https://go.epfl.ch/emacsdezero
+#+DATE: 14.06.2022
+#+AUTHOR: Dominique Quatravaux
+#+EMAIL: dominique@quatravaux.org
+#+LANGUAGE: fr
+#+OPTIONS: timestamp:nil
+#+OPTIONS: toc:1
+#+OPTIONS: num:nil
+#+MACRO: vocabulaire *📚 Vocabulaire*
+#+MACRO: definitionofdone *🎯 /Definition of done/*
+#+MACRO: flecheverslebas @@html:<span style="font: 2rem bold; color: var(--r-link-color);">˅</span>@@
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <style type="text/css">
+#+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
+#+REVEAL_HEAD_PREAMBLE:  small { font-size: 0.5rem; }
+#+REVEAL_HEAD_PREAMBLE: </style>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.3
+
+* Chapitre 1 : autonomie
+** Philosophie / orientation
+    :PROPERTIES:
+    :reveal_background: https://img.static-rmg.be/a/view/q75/w962/h503/4264804/4c49c975418611b921b55576f621e8ae-jpg.jpg
+    :reveal_background_opacity: 0.4
+    :html_container_class: slide-text-white
+    :END:
+- Ne pas s'attendre à ce que ça Juste Marche™ ! #desfoisoui #desfoisnon
+- Un écosystème proliférant — Pas facile de faire les bons choix
+- Même choisir une direction pour avancer peut faire l'objet d'un [[https://github.com/redguardtoo/mastering-emacs-in-one-year-guide][tuto]] !
+  - 💁 S'astreindre à une {{{definitionofdone}}}
+  - Concrètement : un jeu de tests manuel (rédigé et observé)
+
+** But #1 : installation
+- Pour le présent dojo : version minimale = Emacs 26 (celui d'Ubuntu Focal), mais plus récent ≡ mieux
+
+💡🥱 @@html:<small>@@
+Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
+@@html:</small>@@
+
+*** À propos de cette présentation
+    :PROPERTIES:
+    :reveal_background: https://w0.peakpx.com/wallpaper/178/808/HD-wallpaper-heavenly-trumpets-statues-music-trumpet-heaven-celestial-angels.jpg
+    :reveal_background_opacity: 0.3
+    :html_container_class: slide-text-white
+    :END:
+
+- Écrite à 100% dans EMACS
+- Fichier source unique
+- 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][org-reveal]]
+
+↕️ @@html:<small>@@
+Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche vers le bas {{{flecheverslebas}}} permet de naviguer vers des informations supplémentaires, que le présentateur «sautera» peut-être faute de temps.
+@@html:</small>@@
+
+*** Balises
+    :PROPERTIES:
+    :reveal_background: https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/BhfEpfenhofen_Ausfahrsignale_Talaufwaerts_II.JPG/1200px-BhfEpfenhofen_Ausfahrsignale_Talaufwaerts_II.JPG
+    :reveal_background_opacity: 0.3
+    :html_container_class: slide-text-white
+    :END:
+
+- {{{vocabulaire}}} :: Cette annotation repère les mots et concepts qu'utilise EMACS dans un sens bien à lui (privilège de l'âge...)
+- {{{definitionofdone}}} :: Cette annotation suggère un nouveau point d'attention dans votre /definition of done/ ou contrôle-qualité de votre configuration EMACS. Considérez que vous venez de gagner un level lorsque vous la rencontrez 😉
+
+** But #2 : éditer un fichier
+- Ouvrir un fichier
+  - À la souris
+  - Au clavier — 💡 Les menus montrent les raccourcis clavier !
+- {{{vocabulaire}}} : buffer
+- Visualiser l'état sauvegardé ou non
+  - {{{vocabulaire}}} : modeline
+- Sauvegarder
+
+** But #3 : plusieurs fichiers à la fois
+
+- Exercice : découvrir comment changer de buffer
+  - à la souris
+  - au clavier
+- {{{vocabulaire}}} : minibuffer
+- La complétion avec Tab dans le minibuffer
+  - On peut cliquer dedans !
+- Plusieurs buffers à l'écran ? Pas de panique :
+  - =C-x o=
+  - =C-g=  ou =ESC ESC ESC= → À apprendre par cœur
+
+*** But secondaire #3.1 : déplacements à l'intérieur d'un buffer
+  - Commandes de mouvement : [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html][→ doc officielle]]
+  - Recherche littérale avant / arrière
+  - Recherche par expression régulière avant / arrière
+
+** But #4 : premières personnalisations
+
+*** delete-selection-mode
+
+- À la souris : Options → Customize Emacs → Top-level Customization Group
+- Au clavier : M-x customize-group <RET>
+   - 💡 M-x == “command palette”
+   - Votre touche méta ne marche pas ?
+     - Un peu de patience... (§ suivant)
+     - Utiliser Escape pour l'instant : Esc x customize-group <RET>
+
+- Tiens tiens, un buffer dans lequel les touches ne font pas ce que je veux !!
+  - Tout est un buffer
+  - Help → Describe ▸ Describe Buffer modes
+    - Au clavier : C-h → ...
+      - ... → C-h
+      - C-h m
+
+*** Exercice : plus de bruit avec C-g
+
+Solution : M-x customize-variable <RET> visible-bell
+
+** But #5 : persistance des personnalisations - Le fameux =.emacs.d/init.el=
+
+- Sauvegarder les personnalisations ?
+- Les fichiers dans ~/.emacs.d
+- {{{definitionofdone}}} : Emacs redémarre (sans erreurs intempestives) et retient les configurations précédemment faites
+- Exercice : ~/.emacs → ~/.emacs.d/init.el
+
+*** Buts secondaires / exercices
+**** column-number-mode
+
+** But #6 : maître des touches
+*** ... Quelles touches ?
+
+1. Ouvrir votre =~/.emacs.d/init.el=
+2. Rappel : Help → Describe ▸ Describe buffer modes ; =C-h m=
+   - {{{vocabulaire}}} : major mode, minor mode(s)
+   - Exercice : comment faire pour tester mes changements de =.emacs.d/init.el= sans redémarrer Emacs ?
+     - {{{vocabulaire}}} : =eval=
+
+*** Touche Meta
+Référence : https://www.emacswiki.org/emacs/MetaKeyProblems
+  - Mac: =M-x customize-group <ret> ns=
+    - Comment rendre ça persistant ? On verra ça dans un instant !
+  - Linux Ubuntu : (?)
+
+*** C-z → undo
+
+#+BEGIN_SRC elisp
+(global-set-key [(control z)] 'undo)
+#+END_SRC
+
+*** Buts secondaires / exercices
+**** cua-mode, 👍👎 ?
+
+** But #7 : un mode majeur - Web-mode
+
+- Ouvrir un fichier PHP
+  - ... Ça pue.
+
+*** Paquetages #1 : configuration des dépôts
+- M-x package-list-packages <RET>
+  - Bien... Mais pas top !
+  - (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  - Tiens... Ça plante.
+    - À la ligne d'avant, rajouter (require 'package)
+
+*** Paquetages #2 : installer web-mode
+- Exercice : installer Web-mode.
+  - Rappel : C-h m pour comprendre dans quel état j'erre
+- Quand c'est fait : ouvrir ou basculer vers un fichier PHP; M-x web-mode
+- ... Mais ça ne «tient» pas au redémarrage ☹
+  - Résolu au § suivant. Suspense...
+
+*** Paquetages #3 : paquetages et configuration
+
+- Pour plusieurs raisons, le système de paquetages n'est pas au cœur de l'extensibilité d'Emacs
+  - Historique : Emacs date de 1985 (CTAN : 1992, CPAN : 1995)
+  - Stallmann : Cathédrale vs. bazaar, idéalisme / control freak vs. pragmatisme
+- La solution : moar Lisp avec use-package
+  - Rajouter (package-initialize) (require 'use-package)
+  - Voir aussi https://jwiegley.github.io/use-package/installation/
+
+** But #7 : magit — Une première “killer app” avec Emacs
+
+*** Buts secondaires / exercices
+
+- git-gutter
+
+* Chapitre 2 : efficacité
+
+** But #1 : framework(s) de complétion
+
+- L'embarras du choix...
+  - company (recommandé)
+  - ido
+  - auto-complete
+  - Old and busted: icicles, icomplete
+- Moar completion?
+  - Helm
+  - yasnippet
+
+* Chapitre 3 : maîtrise
+
+
+** Garder votre =.emacs.d/init.el= lisible
+
+*** Déplacer les customizations dans un fichier à part
+
+(require 'custom)
+(setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
+(when (file-exists-p custom-file) (load-file custom-file))
+
+- Employer Quelpa et use-package
+- =add-hook=, 
+
