@@ -49,8 +49,8 @@ Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
     :html_container_class: slide-text-white
     :END:
 
-- Écrite à 100% dans Emacs
-- Un seul [[https://github.com/domq/domq.github.io/blob/main/20220614-emacs.org][fichier source]]
+- Écrite avec Emacs
+- Un seul [[https://github.com/domq/domq.github.io/blob/main/20220614-emacs.org][fichier source]] (+ les images)
 - 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][org-reveal]]
 
 @@html:<p class="small">@@{{{lettrine(↕️)}}}
@@ -88,7 +88,7 @@ Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche 
   - On peut cliquer dedans !
 
 - Plusieurs buffers à l'écran ? Pas de panique :
-  - =C-x o= @@html:<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/PublicInformationSymbol_EmergencyExit.svg/563px-PublicInformationSymbol_EmergencyExit.svg.png" style="float: right; max-width: 10%;" />@@
+  - =C-x o= @@html:<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/PublicInformationSymbol_EmergencyExit.svg/563px-PublicInformationSymbol_EmergencyExit.svg.png" style="float: right; max-height: 10vh;" />@@
   - =C-g= ou =ESC ESC ESC= → À apprendre par cœur
 
 *** But secondaire #3.1 : déplacements à l'intérieur d'un buffer
@@ -98,23 +98,33 @@ Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche 
 
 ** But #4 : premières personnalisations
 
-@@html:<h4>delete-selection-mode</h4>@@
-
 - À la souris : Options → Customize Emacs → Top-level Customization Group
-- Au clavier : =M-x customize-group <RET>=
+- Au clavier : =M-x customize <RET>=
    - 💡 =M-x= == “command palette”
    - Votre touche méta ne marche pas ? Un peu de patience... (§ suivant)
-     - Utiliser Escape pour l'instant : =Esc x customize-group <RET>=
+     - Utiliser Escape pour l'instant : =Esc x customize <RET>=
 
 *** Un buffer n'est pas un fichier !
 
-Dans un buffer =Customize=, on ne peut pas modifier le texte.
-- Tout est un buffer — Mais tout n'est pas un fichier
+Dans un buffer =*Customize*=, on ne peut pas modifier le texte.
+
+💡 Les buffers qui n'ont pas de fichier ont typiquement un nom qui commence et finit par =*=.
+
+Que faire alors ?
 - Help → Describe ▸ ...
   - ... Describe Buffer modes
 - Au clavier : C-h → ...
   - ... → C-h
   - C-h m
+
+*** Exercice : customiser =delete-selection-mode=
+
+Validation :
+1. Ouvrir un fichier dans un buffer
+2. Sélectionner du texte
+3. Appuyer sur une lettre
+
+Résultat attendu : la sélection *s'efface* et est remplacée par la lettre saisie.
 
 *** Exercice : 🤫 =C-g= sans la 🔔
 
@@ -126,15 +136,13 @@ Solution : =M-x customize-variable <RET> visible-bell=
 
 Le fameux =.emacs.d/init.el=...
 
-- Sauvegarder le buffer =Customize= ? 🤔
+- Sauvegarder un buffer =*Customize*= ? 🤔
 - Les fichiers =~/.emacs= et =~/.emacs.d/=
 - {{{definitionofdone}}} :
   - Emacs redémarre sans signaler d'erreurs
   - Les changements de configuration sont persistants
 - Exercice : renommer =~/.emacs=  → @@html:<br/>@@ =~/.emacs.d/init.el=
   - Depuis Emacs bien sûr !
-
-*** But secondaire #5.1 : =column-number-mode=
 
 ** But #6 : maître des touches
 
@@ -166,7 +174,7 @@ Notre premier fragment d'Emacs Lisp «fait main» :
 *** En savoir plus sur Emacs Lisp
 
 - =C-h f= lorsque le curseur est sur une fonction Emacs Lisp pour avoir de l'aide
-  - Permet de connaître la/les touche(s) qui active cette fonction
+  - Permet de connaître la/les touche(s) qui active(nt) cette fonction
 - {{{vocabulaire}}} : fonction interactive
 
 *** But secondaire #6.1 : cua-mode, 👍👎 ?
@@ -184,51 +192,141 @@ Notre premier fragment d'Emacs Lisp «fait main» :
 2. @@html:<img src="./images/emacs-php-tout-nu.png" style="max-height: 40vh; margin: 0;"/>@@
 3. … C'est pas terrible.
 
-*** Paquetages #1 : configuration des dépôts
-- M-x package-list-packages <RET>
+*** Configuration des dépôts
+- =M-x package-list-packages <RET>=
   - Bien... Mais pas top !
     #+BEGIN_SRC elisp
     (add-to-list 'package-archives
       '("melpa" . "https://melpa.org/packages/"))
     #+END_SRC
   - Tiens... Ça plante.
-    - À la ligne d'avant, rajouter
+    - 💡 La variable =package-archives= est modifiée avant d'être définie.
+    - 🛠️ Insérer à la ligne précédente
       #+BEGIN_SRC elisp
       (require 'package)
       #+END_SRC
 
-*** Paquetages #2 : installer web-mode
-- Exercice : installer Web-mode.
-  - Rappel : C-h m pour comprendre dans quel état j'erre
-- Quand c'est fait : ouvrir ou basculer vers un fichier PHP; M-x web-mode
-- ... Mais ça ne «tient» pas au redémarrage ☹
-  - Résolu au § suivant. Suspense...
+*** Exercice : installer web-mode
 
-*** Paquetages #3 : paquetages et configuration
+- Rappel : depuis le buffer =*Packages*=, =C-h m= pour comprendre dans quel état j'erre
+- Quand c'est fait :  @@html:<img src="./images/emacs-php-web-mode.png" style="float: right; max-width: 40vh;" />@@
+  1. ouvrir ou basculer vers un fichier PHP
+  2. =M-x web-mode=
+  3. … Profit!
+- ... Mais ça ne «tient» pas au redémarrage ☹ À suivre...
 
-- Pour plusieurs raisons, le système de paquetages n'est pas au cœur de l'extensibilité d'Emacs
-  - Historique : Emacs date de 1985 (CTAN : 1992, CPAN : 1995)
-  - Stallmann : Cathédrale vs. bazaar, idéalisme / control freak vs. pragmatisme
-- La solution : moar Lisp avec use-package
-  - Rajouter (package-initialize) (require 'use-package)
-  - Voir aussi https://jwiegley.github.io/use-package/installation/
+*** 🤦 Pourquoi ?... 🤦
 
-** But #7 : magit — Une première “killer app” avec Emacs
+Pour plusieurs raisons, le système de paquetages n'est pas au cœur de l'extensibilité d'Emacs
+- Historique : Emacs date de 1985 (CTAN : 1992, CPAN : 1995)
+- Stallmann : Cathédrale vs. bazaar, idéalisme / control freak vs. pragmatisme
 
-*** But secondaire #7.1 : =git-gutter=
+*** La solution
+
+1. Installer [[https://jwiegley.github.io/use-package/installation/][use-package]] (cf. supra)
+2.
+   #+BEGIN_SRC elisp
+   (package-initialize)
+   (require 'use-package)
+
+   (use-package web-mode
+     :mode "\\(html?\\|php\\)$")
+   #+END_SRC
+
+*** La solution de la solution
+
+@@html:<img src="./images/regexp-builder.gif" style="max-height: 40vh; float: right;"/>@@
+@@html:<h4>@@ =M-x regexp-builder= @@html:</h4>@@
+@@html:<div style="clear: both;"></div>@@
+
+… et/ou RTFM :
+
+- =M-x info= → =g (emacs) <RET>=
+- Cliquer sur =Regexps=
+
+
+** But #8 : magit — Une première “killer app” avec Emacs
+
+- Installer Magit
+- Configurer la combinaison de touches =C-x v b= pour qu'elle lance la commande =magit-status=
+
+*** … À vous de jouer !
+    :PROPERTIES:
+    :reveal_background: https://surrey-content.surrey.ac.uk/sites/default/files/styles/hero_large/public/2019-01/exams-on-the-day.jpg
+    :reveal_background_opacity: 0.3
+    :html_container_class: slide-text-white
+    :END:
+
+*** Solution
+
+Toujours avec [[https://jwiegley.github.io/use-package/installation/][use-package]]:
+
+(use-package magit
+  :bind ([(control x) (v) (b)] . magit-status))
+
+{{{definitionofdone}}} : pour de meilleures performances, les paquetages «lourds» comme Magit, ne doivent *pas* se charger au démarrage d'Emacs.
+- Contrôle avec =C-h v features <RET>= : cette variable ne doit pas contenir =magit=
+
+** Je sais faire tout seul ! 1/5
+    :PROPERTIES:
+    :reveal_background: https://media1.popsugar-assets.com/files/thumbor/i651KmqcSTzTxBIoBQvBQitLHzo/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2021/03/18/976/n/24155406/tmp_UTsZdZ_beeeb1a5e62e84ed_GettyImages-1208799380.jpg
+    :reveal_background_opacity: 0.3
+    :html_container_class: slide-text-white
+    :END:
+
+En modifiant mon =~/.emacs.d/init.el=:
+
+- Je fais marcher les touches =Home=, =End=, =C-Home= et =C-End= (ou équivalent de mon choix sur Mac)
+  - Commandes respectives : =beginning-of-line=, =end-of-line=, =beginning-of-buffer= et =end-of-buffer=
+- Je désactive les commandes clavier que je n'aime pas avec la fonction =global-unset-key=
+- =(tool-bar-mode -1)= : si je n'aime pas les icônes
+
+*** Je sais faire tout seul ! 2/5
+
+Avec l'aide de Google, je choisis, j'installe et je configure ce qui me plaît parmi :
+
+- les modes adaptés à mes langages de programmation préférés
+- =column-number-mode= : fait apparaître le numéro de la colonne dans la /modeline/ à côté du numéro de ligne.
+- =git-gutter= : les lignes modifiées d'un fichier qui est sous Git sont marquées dans la marge
+- =undo-tree= : je voyage dans les lignes temporelles de mon travail d'édition
+
+
+*** Je sais faire tout seul ! 3/5
+
+J'évalue, configure et choisis un ou des frameworks de complétion :
+  - company (recommandé)
+  - ido
+  - auto-complete
+  - (Old and busted: icicles, icomplete)
+- Moar completion?
+  - Helm
+  - yasnippet
+
+*** Je sais faire tout seul ! 4/5
+
+Je consacre du temps pour maîtriser les “power features” d'Emacs 💪 :
+
+- =org-mode= : ma vie en texte plat
+- =tramp= : j'accède à des fichiers distants en ouvrant =/ssh:remote-host:/var/www/vhosts/tototutu.php=
+  - ... Et je fais marcher Magit à distance ! #emacsenprod
+
+*** Je sais faire tout seul ! 5/5
+    :PROPERTIES:
+    :reveal_background: https://rnli.org/-/media/rnli/images/safety/42064-yacht-sailing-view-from-onboard-boat-nathan-williams-16x9.jpg?rev=7332374b69104667a73f3429c0cf6e36&w=1500&h=844&hash=EE495B44B8DE34A21B23A0ED76BEB06D
+    :reveal_background_opacity: 0.3
+    :html_container_class: slide-text-white
+    :END:
+
+- Je lis une fois en entier la page d'Info (=M-x info=) d'Emacs
+  - 💡 =M-x widen= pour tout voir d'un seul coup (sans navigation) !
+- Je me crée un compte sur l'[[https://www.emacswiki.org/][EmacsWiki]]
+- Je m'abonne à [[https://www.reddit.com/r/emacs/][/r/emacs]]
 
 * Chapitre 2 : efficacité
 
 ** But #1 : framework(s) de complétion
 
 - L'embarras du choix...
-  - company (recommandé)
-  - ido
-  - auto-complete
-  - Old and busted: icicles, icomplete
-- Moar completion?
-  - Helm
-  - yasnippet
 
 * Chapitre 3 : maîtrise
 
