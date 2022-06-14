@@ -47,7 +47,7 @@ Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
     :END:
 
 - Écrite à 100% dans EMACS
-- Fichier source unique
+- Un seul [[https://raw.githubusercontent.com/domq/domq.github.io/main/20220614-emacs.org][fichier source]]
 - 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][org-reveal]]
 
 ↕️ @@html:<small>@@
