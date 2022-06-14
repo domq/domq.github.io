@@ -14,6 +14,7 @@
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/
 #+REVEAL_HLEVEL: 2
 #+REVEAL_HEAD_PREAMBLE: <style type="text/css">
+#+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
 #+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
 #+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
 #+REVEAL_HEAD_PREAMBLE: </style>
@@ -84,9 +85,10 @@ Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche 
 - {{{vocabulaire}}} : minibuffer
 - La complétion avec Tab dans le minibuffer
   - On peut cliquer dedans !
+
 - Plusieurs buffers à l'écran ? Pas de panique :
-  - =C-x o=
-  - =C-g=  ou =ESC ESC ESC= → À apprendre par cœur
+  - =C-x o= @@html:<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/PublicInformationSymbol_EmergencyExit.svg/563px-PublicInformationSymbol_EmergencyExit.svg.png" style="float: right; max-width: 10%;" />@@
+  - =C-g= ou =ESC ESC ESC= → À apprendre par cœur
 
 *** But secondaire #3.1 : déplacements à l'intérieur d'un buffer
   - Commandes de mouvement : [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html][→ doc officielle]]
