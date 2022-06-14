@@ -17,6 +17,7 @@
 #+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
 #+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
 #+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
+#+REVEAL_HEAD_PREAMBLE:  code {  color: lightblue; }
 #+REVEAL_HEAD_PREAMBLE: </style>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg
 #+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.3
@@ -97,25 +98,27 @@ Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche 
 
 ** But #4 : premières personnalisations
 
-*** delete-selection-mode
+@@html:<h4>delete-selection-mode</h4>@@
 
 - À la souris : Options → Customize Emacs → Top-level Customization Group
-- Au clavier : M-x customize-group <RET>
-   - 💡 M-x == “command palette”
-   - Votre touche méta ne marche pas ?
-     - Un peu de patience... (§ suivant)
-     - Utiliser Escape pour l'instant : Esc x customize-group <RET>
+- Au clavier : =M-x customize-group <RET>=
+   - 💡 =M-x= == “command palette”
+   - Votre touche méta ne marche pas ? Un peu de patience... (§ suivant)
+     - Utiliser Escape pour l'instant : =Esc x customize-group <RET>=
 
-- Tiens tiens, un buffer dans lequel les touches ne font pas ce que je veux !!
-  - Tout est un buffer
-  - Help → Describe ▸ Describe Buffer modes
-    - Au clavier : C-h → ...
-      - ... → C-h
-      - C-h m
+*** Un buffer n'est pas un fichier !
+
+Dans un buffer =Customize=, on ne peut pas modifier le texte.
+- Tout est un buffer — Mais tout n'est pas un fichier
+- Help → Describe ▸ ...
+  - ... Describe Buffer modes
+- Au clavier : C-h → ...
+  - ... → C-h
+  - C-h m
 
 *** Exercice : plus de bruit avec C-g
 
-Solution : M-x customize-variable <RET> visible-bell
+Solution : =M-x customize-variable <RET> visible-bell=
 
 ** But #5 : persistance des personnalisations - Le fameux =.emacs.d/init.el=
 
