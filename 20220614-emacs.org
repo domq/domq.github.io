@@ -1,4 +1,4 @@
-#+TITLE: EMACS en partant de zéro
+#+TITLE: Emacs en partant de zéro
 #+SUBTITLE: https://go.epfl.ch/emacsdezero
 #+DATE: 14.06.2022
 #+AUTHOR: Dominique Quatravaux
@@ -49,7 +49,7 @@ Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
     :html_container_class: slide-text-white
     :END:
 
-- Écrite à 100% dans EMACS
+- Écrite à 100% dans Emacs
 - Un seul [[https://github.com/domq/domq.github.io/blob/main/20220614-emacs.org][fichier source]]
 - 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][org-reveal]]
 
@@ -64,8 +64,8 @@ Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche 
     :html_container_class: slide-text-white
     :END:
 
-- {{{vocabulaire}}} :: Cette annotation repère les mots et concepts qu'utilise EMACS dans un sens bien à lui (privilège de l'âge...)
-- {{{definitionofdone}}} :: Cette annotation suggère un nouveau point d'attention dans votre /definition of done/ ou contrôle-qualité de votre configuration EMACS. Considérez que vous venez de gagner un level lorsque vous la rencontrez 😉
+- {{{vocabulaire}}} :: Cette annotation repère les mots et concepts qu'utilise Emacs dans un sens bien à lui (privilège de l'âge...)
+- {{{definitionofdone}}} :: Cette annotation suggère un nouveau point d'attention dans votre /definition of done/ ou contrôle-qualité de votre configuration Emacs. Considérez que vous venez de gagner un level lorsque vous la rencontrez 😉
 
 ** But #2 : éditer un fichier
 - Ouvrir un fichier
@@ -116,55 +116,86 @@ Dans un buffer =Customize=, on ne peut pas modifier le texte.
   - ... → C-h
   - C-h m
 
-*** Exercice : plus de bruit avec C-g
+*** Exercice : 🤫 =C-g= sans la 🔔
+
+*** Exercice : 🤫 =C-g= sans la 🔔
 
 Solution : =M-x customize-variable <RET> visible-bell=
 
-** But #5 : persistance des personnalisations - Le fameux =.emacs.d/init.el=
+** But #5 : persistance des personnalisations
 
-- Sauvegarder les personnalisations ?
-- Les fichiers dans ~/.emacs.d
-- {{{definitionofdone}}} : Emacs redémarre (sans erreurs intempestives) et retient les configurations précédemment faites
-- Exercice : ~/.emacs → ~/.emacs.d/init.el
+Le fameux =.emacs.d/init.el=...
 
-*** Buts secondaires / exercices
-**** column-number-mode
+- Sauvegarder le buffer =Customize= ? 🤔
+- Les fichiers =~/.emacs= et =~/.emacs.d/=
+- {{{definitionofdone}}} :
+  - Emacs redémarre sans signaler d'erreurs
+  - Les changements de configuration sont persistants
+- Exercice : renommer =~/.emacs=  → @@html:<br/>@@ =~/.emacs.d/init.el=
+  - Depuis Emacs bien sûr !
+
+*** But secondaire #5.1 : =column-number-mode=
 
 ** But #6 : maître des touches
-*** ... Quelles touches ?
+
+@@html:<h4>... Quelles touches ?</h4>@@
 
 1. Ouvrir votre =~/.emacs.d/init.el=
-2. Rappel : Help → Describe ▸ Describe buffer modes ; =C-h m=
-   - {{{vocabulaire}}} : major mode, minor mode(s)
-   - Exercice : comment faire pour tester mes changements de =.emacs.d/init.el= sans redémarrer Emacs ?
-     - {{{vocabulaire}}} : =eval=
+2. Rappel :
+   - Help → Describe ▸ Describe buffer modes
+   - =C-h m=
 
-*** Touche Meta
+- {{{vocabulaire}}} : major mode, minor mode(s)
+- Exercice : comment faire pour tester mes changements de =.emacs.d/init.el= sans redémarrer Emacs ?
+- {{{vocabulaire}}} : =eval=
+
+*** Maître des touches : touche Meta
+
 Référence : https://www.emacswiki.org/emacs/MetaKeyProblems
   - Mac: =M-x customize-group <ret> ns=
-    - Comment rendre ça persistant ? On verra ça dans un instant !
   - Linux Ubuntu : (?)
 
-*** C-z → undo
+*** Maître des touches : =C-z= → undo
+
+Notre premier fragment d'Emacs Lisp «fait main» :
 
 #+BEGIN_SRC elisp
 (global-set-key [(control z)] 'undo)
 #+END_SRC
 
-*** Buts secondaires / exercices
-**** cua-mode, 👍👎 ?
+*** En savoir plus sur Emacs Lisp
+
+- =C-h f= lorsque le curseur est sur une fonction Emacs Lisp pour avoir de l'aide
+  - Permet de connaître la/les touche(s) qui active cette fonction
+- {{{vocabulaire}}} : fonction interactive
+
+*** But secondaire #6.1 : cua-mode, 👍👎 ?
+    :PROPERTIES:
+    :reveal_background: https://img2.freepng.fr/20180311/odq/kisspng-united-states-easter-bunny-uncle-sam-richard-nixon-oil-painting-grandfather-5aa5363eac5952.823462721520776766706.jpg
+    :reveal_background_opacity: 0.3
+    :html_container_class: slide-text-white
+    :END:
+
+À vous d'essayer !
 
 ** But #7 : un mode majeur - Web-mode
 
-- Ouvrir un fichier PHP
-  - ... Ça pue.
+1. Ouvrir un fichier PHP
+2. @@html:<img src="./images/emacs-php-tout-nu.png" style="max-height: 40vh; margin: 0;"/>@@
+3. … C'est pas terrible.
 
 *** Paquetages #1 : configuration des dépôts
 - M-x package-list-packages <RET>
   - Bien... Mais pas top !
-  - (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+    #+BEGIN_SRC elisp
+    (add-to-list 'package-archives
+      '("melpa" . "https://melpa.org/packages/"))
+    #+END_SRC
   - Tiens... Ça plante.
-    - À la ligne d'avant, rajouter (require 'package)
+    - À la ligne d'avant, rajouter
+      #+BEGIN_SRC elisp
+      (require 'package)
+      #+END_SRC
 
 *** Paquetages #2 : installer web-mode
 - Exercice : installer Web-mode.
@@ -184,9 +215,7 @@ Référence : https://www.emacswiki.org/emacs/MetaKeyProblems
 
 ** But #7 : magit — Une première “killer app” avec Emacs
 
-*** Buts secondaires / exercices
-
-- git-gutter
+*** But secondaire #7.1 : =git-gutter=
 
 * Chapitre 2 : efficacité
 

@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<title>EMACS en partant de zéro</title>
+<title>Emacs en partant de zéro</title>
 <meta name="author" content="Dominique Quatravaux"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -34,31 +34,31 @@ code {  color: lightblue; }
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide" data-background="https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg" data-background-opacity="0.3"><h1 class="title">EMACS en partant de zéro</h1><p class="subtitle"><a href="https://go.epfl.ch/emacsdezero">https://go.epfl.ch/emacsdezero</a></p>
+<section id="sec-title-slide" data-background="https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg" data-background-opacity="0.3"><h1 class="title">Emacs en partant de zéro</h1><p class="subtitle"><a href="https://go.epfl.ch/emacsdezero">https://go.epfl.ch/emacsdezero</a></p>
 <h2 class="author">Dominique Quatravaux</h2><h2 class="date">14.06.2022</h2>
 </section>
 <section id="sec-table-of-contents"><div id="table-of-contents" role="doc-toc">
 <h2>Table des matières</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org919b697">Chapitre 1 : autonomie</a></li>
-<li><a href="#/slide-orgdfd2d1e">Chapitre 2 : efficacité</a></li>
-<li><a href="#/slide-orgca3bbbc">Chapitre 3 : maîtrise</a></li>
+<li><a href="#/slide-org7ddda5e">Chapitre 1 : autonomie</a></li>
+<li><a href="#/slide-org14461e8">Chapitre 2 : efficacité</a></li>
+<li><a href="#/slide-org876f4b5">Chapitre 3 : maîtrise</a></li>
 </ul>
 </div>
 </div>
 </section>
 
 <section>
-<section id="slide-org919b697">
-<h2 id="org919b697">Chapitre 1 : autonomie</h2>
-<div class="outline-text-2" id="text-org919b697">
+<section id="slide-org7ddda5e">
+<h2 id="org7ddda5e">Chapitre 1 : autonomie</h2>
+<div class="outline-text-2" id="text-org7ddda5e">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org807f907" class="slide-text-white" data-background="https://img.static-rmg.be/a/view/q75/w962/h503/4264804/4c49c975418611b921b55576f621e8ae-jpg.jpg" data-background-opacity="0.4">
-<h3 id="org807f907">Philosophie / orientation</h3>
+<section id="slide-org20c9326" class="slide-text-white" data-background="https://img.static-rmg.be/a/view/q75/w962/h503/4264804/4c49c975418611b921b55576f621e8ae-jpg.jpg" data-background-opacity="0.4">
+<h3 id="org20c9326">Philosophie / orientation</h3>
 <ul>
 <li>Ne pas s'attendre à ce que ça Juste Marche™ ! #desfoisoui #desfoisnon</li>
 <li>Un écosystème proliférant — Pas facile de faire les bons choix</li>
@@ -74,8 +74,8 @@ code {  color: lightblue; }
 </section>
 </section>
 <section>
-<section id="slide-org5e3098b">
-<h3 id="org5e3098b">But #1 : installation</h3>
+<section id="slide-org99bfa3b">
+<h3 id="org99bfa3b">But #1 : installation</h3>
 <ul>
 <li>Pour le présent dojo : version minimale = Emacs 26 (celui d'Ubuntu Focal), mais plus récent ≡ mieux</li>
 
@@ -88,10 +88,10 @@ Si vous vous ennuyez : cliquez sur <span style="font: 3em bold; display: inline-
 </p>
 
 </section>
-<section id="slide-org987823b" class="slide-text-white" data-background="https://w0.peakpx.com/wallpaper/178/808/HD-wallpaper-heavenly-trumpets-statues-music-trumpet-heaven-celestial-angels.jpg" data-background-opacity="0.3">
-<h4 id="org987823b">À propos de cette présentation</h4>
+<section id="slide-orgfe13098" class="slide-text-white" data-background="https://w0.peakpx.com/wallpaper/178/808/HD-wallpaper-heavenly-trumpets-statues-music-trumpet-heaven-celestial-angels.jpg" data-background-opacity="0.3">
+<h4 id="orgfe13098">À propos de cette présentation</h4>
 <ul>
-<li>Écrite à 100% dans EMACS</li>
+<li>Écrite à 100% dans Emacs</li>
 <li>Un seul <a href="https://github.com/domq/domq.github.io/blob/main/20220614-emacs.org">fichier source</a></li>
 <li>🔋 Grâce à <a href="https://orgmode.org/">🦄 org-mode</a> + <a href="https://github.com/hexmode/ox-reveal">org-reveal</a></li>
 
@@ -104,19 +104,19 @@ Comme dans toute présentation <a href="https://revealjs.com/">reveal.js</a>, la
 </p>
 
 </section>
-<section id="slide-orgecc28bf" class="slide-text-white" data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/BhfEpfenhofen_Ausfahrsignale_Talaufwaerts_II.JPG/1200px-BhfEpfenhofen_Ausfahrsignale_Talaufwaerts_II.JPG" data-background-opacity="0.3">
-<h4 id="orgecc28bf">Balises</h4>
+<section id="slide-orgffdd503" class="slide-text-white" data-background="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/BhfEpfenhofen_Ausfahrsignale_Talaufwaerts_II.JPG/1200px-BhfEpfenhofen_Ausfahrsignale_Talaufwaerts_II.JPG" data-background-opacity="0.3">
+<h4 id="orgffdd503">Balises</h4>
 <dl>
-<dt><b>📚 Vocabulaire</b></dt><dd>Cette annotation repère les mots et concepts qu'utilise EMACS dans un sens bien à lui (privilège de l'âge&#x2026;)</dd>
-<dt><b>🎯 <i>Definition of done</i></b></dt><dd>Cette annotation suggère un nouveau point d'attention dans votre <i>definition of done</i> ou contrôle-qualité de votre configuration EMACS. Considérez que vous venez de gagner un level lorsque vous la rencontrez 😉</dd>
+<dt><b>📚 Vocabulaire</b></dt><dd>Cette annotation repère les mots et concepts qu'utilise Emacs dans un sens bien à lui (privilège de l'âge&#x2026;)</dd>
+<dt><b>🎯 <i>Definition of done</i></b></dt><dd>Cette annotation suggère un nouveau point d'attention dans votre <i>definition of done</i> ou contrôle-qualité de votre configuration Emacs. Considérez que vous venez de gagner un level lorsque vous la rencontrez 😉</dd>
 
 </dl>
 
 </section>
 </section>
 <section>
-<section id="slide-org765ebec">
-<h3 id="org765ebec">But #2 : éditer un fichier</h3>
+<section id="slide-org01eb7fc">
+<h3 id="org01eb7fc">But #2 : éditer un fichier</h3>
 <ul>
 <li>Ouvrir un fichier
 <ul>
@@ -141,8 +141,8 @@ Comme dans toute présentation <a href="https://revealjs.com/">reveal.js</a>, la
 </section>
 </section>
 <section>
-<section id="slide-orgf65a994">
-<h3 id="orgf65a994">But #3 : plusieurs fichiers à la fois</h3>
+<section id="slide-org4d5c7e1">
+<h3 id="org4d5c7e1">But #3 : plusieurs fichiers à la fois</h3>
 <ul>
 <li><b>📚 Vocabulaire</b> : buffer</li>
 <li>Exercice : découvrir comment changer de buffer
@@ -168,8 +168,8 @@ Comme dans toute présentation <a href="https://revealjs.com/">reveal.js</a>, la
 </ul>
 
 </section>
-<section id="slide-org556781c">
-<h4 id="org556781c">But secondaire #3.1 : déplacements à l'intérieur d'un buffer</h4>
+<section id="slide-org26a6012">
+<h4 id="org26a6012">But secondaire #3.1 : déplacements à l'intérieur d'un buffer</h4>
 <ul>
 <li>Commandes de mouvement : <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html">→ doc officielle</a></li>
 <li>Recherche littérale avant / arrière</li>
@@ -180,8 +180,8 @@ Comme dans toute présentation <a href="https://revealjs.com/">reveal.js</a>, la
 </section>
 </section>
 <section>
-<section id="slide-orgd8bb755">
-<h3 id="orgd8bb755">But #4 : premières personnalisations</h3>
+<section id="slide-org45780a8">
+<h3 id="org45780a8">But #4 : premières personnalisations</h3>
 <p>
 <h4>delete-selection-mode</h4>
 </p>
@@ -202,8 +202,8 @@ Comme dans toute présentation <a href="https://revealjs.com/">reveal.js</a>, la
 </ul>
 
 </section>
-<section id="slide-org42e3542">
-<h4 id="org42e3542">Un buffer n'est pas un fichier !</h4>
+<section id="slide-org9506b5d">
+<h4 id="org9506b5d">Un buffer n'est pas un fichier !</h4>
 <p>
 Dans un buffer <code>Customize</code>, on ne peut pas modifier le texte.
 </p>
@@ -224,8 +224,12 @@ Dans un buffer <code>Customize</code>, on ne peut pas modifier le texte.
 </ul>
 
 </section>
-<section id="slide-org396cc35">
-<h4 id="org396cc35">Exercice : plus de bruit avec C-g</h4>
+<section id="slide-orge420c25">
+<h4 id="orge420c25">Exercice : 🤫 <code>C-g</code> sans la 🔔</h4>
+
+</section>
+<section id="slide-org5958f29">
+<h4 id="org5958f29">Exercice : 🤫 <code>C-g</code> sans la 🔔</h4>
 <p>
 Solution : <code>M-x customize-variable &lt;RET&gt; visible-bell</code>
 </p>
@@ -233,69 +237,76 @@ Solution : <code>M-x customize-variable &lt;RET&gt; visible-bell</code>
 </section>
 </section>
 <section>
-<section id="slide-orga2cdb3d">
-<h3 id="orga2cdb3d">But #5 : persistance des personnalisations - Le fameux <code>.emacs.d/init.el</code></h3>
+<section id="slide-org0724f35">
+<h3 id="org0724f35">But #5 : persistance des personnalisations</h3>
+<p>
+Le fameux <code>.emacs.d/init.el</code>&#x2026;
+</p>
+
 <ul>
-<li>Sauvegarder les personnalisations ?</li>
-<li>Les fichiers dans ~/.emacs.d</li>
-<li><b>🎯 <i>Definition of done</i></b> : Emacs redémarre (sans erreurs intempestives) et retient les configurations précédemment faites</li>
-<li>Exercice : ~/.emacs → ~/.emacs.d/init.el</li>
+<li>Sauvegarder le buffer <code>Customize</code> ? 🤔</li>
+<li>Les fichiers <code>~/.emacs</code> et <code>~/.emacs.d/</code></li>
+<li><b>🎯 <i>Definition of done</i></b> :
+<ul>
+<li>Emacs redémarre sans signaler d'erreurs</li>
+<li>Les changements de configuration sont persistants</li>
+
+</ul></li>
+<li>Exercice : renommer <code>~/.emacs</code>  → <br/> <code>~/.emacs.d/init.el</code>
+<ul>
+<li>Depuis Emacs bien sûr !</li>
+
+</ul></li>
 
 </ul>
 
 </section>
-<section id="slide-org4f6a526">
-<h4 id="org4f6a526">Buts secondaires / exercices</h4>
-<div class="outline-text-4" id="text-org4f6a526">
-</div>
-<ul class="org-ul">
-<li><a id="orgc10de4b"></a>column-number-mode<br /></li>
-</ul>
+<section id="slide-orge3dc9df">
+<h4 id="orge3dc9df">But secondaire #5.1 : <code>column-number-mode</code></h4>
 
 </section>
 </section>
 <section>
-<section id="slide-org3a252ff">
-<h3 id="org3a252ff">But #6 : maître des touches</h3>
-<div class="outline-text-3" id="text-org3a252ff">
-</div>
-</section>
-<section id="slide-org5ce5b17">
-<h4 id="org5ce5b17">&#x2026; Quelles touches ?</h4>
+<section id="slide-orgdbd639b">
+<h3 id="orgdbd639b">But #6 : maître des touches</h3>
+<p>
+<h4>... Quelles touches ?</h4>
+</p>
+
 <ol>
 <li>Ouvrir votre <code>~/.emacs.d/init.el</code></li>
-<li>Rappel : Help → Describe ▸ Describe buffer modes ; <code>C-h m</code>
+<li>Rappel :
 <ul>
+<li>Help → Describe ▸ Describe buffer modes</li>
+<li><code>C-h m</code></li>
+
+</ul></li>
+
 <li><b>📚 Vocabulaire</b> : major mode, minor mode(s)</li>
-<li>Exercice : comment faire pour tester mes changements de <code>.emacs.d/init.el</code> sans redémarrer Emacs ?
-<ul>
+<li>Exercice : comment faire pour tester mes changements de <code>.emacs.d/init.el</code> sans redémarrer Emacs ?</li>
 <li><b>📚 Vocabulaire</b> : <code>eval</code></li>
-
-</ul></li>
-
-</ul></li>
 
 </ol>
 
 </section>
-<section id="slide-orgf56d343">
-<h4 id="orgf56d343">Touche Meta</h4>
+<section id="slide-orge1b27c8">
+<h4 id="orge1b27c8">Maître des touches : touche Meta</h4>
 <p>
 Référence : <a href="https://www.emacswiki.org/emacs/MetaKeyProblems">https://www.emacswiki.org/emacs/MetaKeyProblems</a>
 </p>
 <ul>
-<li>Mac: <code>M-x customize-group &lt;ret&gt; ns</code>
-<ul>
-<li>Comment rendre ça persistant ? On verra ça dans un instant !</li>
-
-</ul></li>
+<li>Mac: <code>M-x customize-group &lt;ret&gt; ns</code></li>
 <li>Linux Ubuntu : (?)</li>
 
 </ul>
 
 </section>
-<section id="slide-org0ad4d5e">
-<h4 id="org0ad4d5e">C-z → undo</h4>
+<section id="slide-orgf524c26">
+<h4 id="orgf524c26">Maître des touches : <code>C-z</code> → undo</h4>
+<p>
+Notre premier fragment d'Emacs Lisp «fait main» :
+</p>
+
 <div class="org-src-container">
 
 <pre  class="src src-elisp"   ><code trim>(global-set-key [(control z)] 'undo)
@@ -303,39 +314,62 @@ Référence : <a href="https://www.emacswiki.org/emacs/MetaKeyProblems">https://
 </div>
 
 </section>
-<section id="slide-orgc5dbd87">
-<h4 id="orgc5dbd87">Buts secondaires / exercices</h4>
-<div class="outline-text-4" id="text-orgc5dbd87">
-</div>
-<ul class="org-ul">
-<li><a id="orgb427a5a"></a>cua-mode, 👍👎 ?<br /></li>
+<section id="slide-org5322f76">
+<h4 id="org5322f76">En savoir plus sur Emacs Lisp</h4>
+<ul>
+<li><code>C-h f</code> lorsque le curseur est sur une fonction Emacs Lisp pour avoir de l'aide
+<ul>
+<li>Permet de connaître la/les touche(s) qui active cette fonction</li>
+
+</ul></li>
+<li><b>📚 Vocabulaire</b> : fonction interactive</li>
+
 </ul>
+
+</section>
+<section id="slide-org8fa2635" class="slide-text-white" data-background="https://img2.freepng.fr/20180311/odq/kisspng-united-states-easter-bunny-uncle-sam-richard-nixon-oil-painting-grandfather-5aa5363eac5952.823462721520776766706.jpg" data-background-opacity="0.3">
+<h4 id="org8fa2635">But secondaire #6.1 : cua-mode, 👍👎 ?</h4>
+<p>
+À vous d'essayer !
+</p>
 
 </section>
 </section>
 <section>
-<section id="slide-org340ce69">
-<h3 id="org340ce69">But #7 : un mode majeur - Web-mode</h3>
-<ul>
-<li>Ouvrir un fichier PHP
-<ul>
-<li>&#x2026; Ça pue.</li>
+<section id="slide-orgb477865">
+<h3 id="orgb477865">But #7 : un mode majeur - Web-mode</h3>
+<ol>
+<li>Ouvrir un fichier PHP</li>
+<li><img src="./images/emacs-php-tout-nu.png" style="max-height: 40vh; margin: 0;"/></li>
+<li>… C'est pas terrible.</li>
 
-</ul></li>
-
-</ul>
+</ol>
 
 </section>
-<section id="slide-orgaf573d1">
-<h4 id="orgaf573d1">Paquetages #1 : configuration des dépôts</h4>
+<section id="slide-org32abe3c">
+<h4 id="org32abe3c">Paquetages #1 : configuration des dépôts</h4>
 <ul>
 <li>M-x package-list-packages &lt;RET&gt;
 <ul>
-<li>Bien&#x2026; Mais pas top !</li>
-<li>(add-to-list 'package-archives '("melpa" . "<a href="https://melpa.org/packages/">https://melpa.org/packages/</a>"))</li>
+<li><p>
+Bien&#x2026; Mais pas top !
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-elisp"   ><code trim>(add-to-list 'package-archives
+  '("melpa" . "https://melpa.org/packages/"))
+</code></pre>
+</div></li>
 <li>Tiens&#x2026; Ça plante.
 <ul>
-<li>À la ligne d'avant, rajouter (require 'package)</li>
+<li><p>
+À la ligne d'avant, rajouter
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-elisp"   ><code trim>(require 'package)
+</code></pre>
+</div></li>
 
 </ul></li>
 
@@ -344,8 +378,8 @@ Référence : <a href="https://www.emacswiki.org/emacs/MetaKeyProblems">https://
 </ul>
 
 </section>
-<section id="slide-org0a5e8c8">
-<h4 id="org0a5e8c8">Paquetages #2 : installer web-mode</h4>
+<section id="slide-org60fdaf0">
+<h4 id="org60fdaf0">Paquetages #2 : installer web-mode</h4>
 <ul>
 <li>Exercice : installer Web-mode.
 <ul>
@@ -362,8 +396,8 @@ Référence : <a href="https://www.emacswiki.org/emacs/MetaKeyProblems">https://
 </ul>
 
 </section>
-<section id="slide-orgd7f140e">
-<h4 id="orgd7f140e">Paquetages #3 : paquetages et configuration</h4>
+<section id="slide-org72e2bd3">
+<h4 id="org72e2bd3">Paquetages #3 : paquetages et configuration</h4>
 <ul>
 <li>Pour plusieurs raisons, le système de paquetages n'est pas au cœur de l'extensibilité d'Emacs
 <ul>
@@ -383,30 +417,26 @@ Référence : <a href="https://www.emacswiki.org/emacs/MetaKeyProblems">https://
 </section>
 </section>
 <section>
-<section id="slide-org84a56ae">
-<h3 id="org84a56ae">But #7 : magit — Une première “killer app” avec Emacs</h3>
-<div class="outline-text-3" id="text-org84a56ae">
+<section id="slide-org8c58069">
+<h3 id="org8c58069">But #7 : magit — Une première “killer app” avec Emacs</h3>
+<div class="outline-text-3" id="text-org8c58069">
 </div>
 </section>
-<section id="slide-org7cc6869">
-<h4 id="org7cc6869">Buts secondaires / exercices</h4>
-<ul>
-<li>git-gutter</li>
-
-</ul>
+<section id="slide-org6bf6dcb">
+<h4 id="org6bf6dcb">But secondaire #7.1 : <code>git-gutter</code></h4>
 
 </section>
 </section>
 <section>
-<section id="slide-orgdfd2d1e">
-<h2 id="orgdfd2d1e">Chapitre 2 : efficacité</h2>
-<div class="outline-text-2" id="text-orgdfd2d1e">
+<section id="slide-org14461e8">
+<h2 id="org14461e8">Chapitre 2 : efficacité</h2>
+<div class="outline-text-2" id="text-org14461e8">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-orgdc7d4ea">
-<h3 id="orgdc7d4ea">But #1 : framework(s) de complétion</h3>
+<section id="slide-org07bef85">
+<h3 id="org07bef85">But #1 : framework(s) de complétion</h3>
 <ul>
 <li>L'embarras du choix&#x2026;
 <ul>
@@ -428,20 +458,20 @@ Référence : <a href="https://www.emacswiki.org/emacs/MetaKeyProblems">https://
 </section>
 </section>
 <section>
-<section id="slide-orgca3bbbc">
-<h2 id="orgca3bbbc">Chapitre 3 : maîtrise</h2>
-<div class="outline-text-2" id="text-orgca3bbbc">
+<section id="slide-org876f4b5">
+<h2 id="org876f4b5">Chapitre 3 : maîtrise</h2>
+<div class="outline-text-2" id="text-org876f4b5">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org504fcc4">
-<h3 id="org504fcc4">Garder votre <code>.emacs.d/init.el</code> lisible</h3>
-<div class="outline-text-3" id="text-org504fcc4">
+<section id="slide-org1580ffc">
+<h3 id="org1580ffc">Garder votre <code>.emacs.d/init.el</code> lisible</h3>
+<div class="outline-text-3" id="text-org1580ffc">
 </div>
 </section>
-<section id="slide-org50a2007">
-<h4 id="org50a2007">Déplacer les customizations dans un fichier à part</h4>
+<section id="slide-org4d33127">
+<h4 id="org4d33127">Déplacer les customizations dans un fichier à part</h4>
 <p>
 (require 'custom)
 (setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
