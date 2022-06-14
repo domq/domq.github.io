@@ -290,7 +290,6 @@ Avec l'aide de Google, je choisis, j'installe et je configure ce qui me plaît p
 - =git-gutter= : les lignes modifiées d'un fichier qui est sous Git sont marquées dans la marge
 - =undo-tree= : je voyage dans les lignes temporelles de mon travail d'édition
 
-
 *** Je sais faire tout seul ! 3/5
     :PROPERTIES:
     :custom_id: complétion
@@ -320,28 +319,117 @@ Je consacre du temps pour maîtriser les “power features” d'Emacs 💪 :
     :html_container_class: slide-text-white
     :END:
 
-- Je lis une fois en entier la page d'Info (=M-x info=) d'Emacs
+- Je lis une fois en entier la page d'Info (=M-x info=) d'Emacs (=g (emacs) <RET>=)
   - 💡 =M-x widen= pour tout voir d'un seul coup (sans navigation) !
 - Je me crée un compte sur l'[[https://www.emacswiki.org/][EmacsWiki]]
 - Je m'abonne à [[https://www.reddit.com/r/emacs/][/r/emacs]]
+- Je lis [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]] et [[https://emacsrocks.com/][Emacs Rocks]]
 
 * Chapitre 2 : efficacité
 
-** But #1 : framework(s) de complétion
+... Ou : tout ce qu'on peut encore faire avec Emacs, sans apprendre Emacs Lisp (pour l'instant).
+
+** But #1 : multi-fenêtrage
+
+{{{vocabulaire}}} : une /frame/ est une division de la fenêtre d'Emacs dans laquelle s'affiche un buffer.
+
+Exercice : que font les combinaisons de touches suivantes ?
+- =C-x 2=
+- =C-x 3=
+- =C-x 1=
+- =C-x 0=
+
+** But #2 : framework(s) de complétion
 
 Si [[#complétion][pas déjà fait]]
 
+** But #3 : gérer le code dans =~/.emacs.d/=
+
+- Y créer un dépôt Git (facile)
+- Déplacer les customizations dans un fichier à part (qu'on pourra choisir de =.gitignore= r) :
+  #+BEGIN_SRC elisp
+  (require 'custom)
+  (setq custom-file (concat user-emacs-directory "emacs-custom.el"))
+  (when (file-exists-p custom-file) (load-file custom-file))
+  #+END_SRC
+
+** But #4 : /registers/ (1/3)
+
+{{{vocabulaire}}} : un “register" est comme signet de navigateur généralisé. Il a un nom en une lettre, choisie par l'utilisateur ("a" dans les exemples qui suivent).
+
+*** But #4 : /registers/ (2/3)
+
+On peut par exemple stocker dans le /register/ =a= :
++ le point actuel dans un buffer : =C-x r SPC a=,
++ un bloc de texte ({{{vocabulaire}}} : une «région») : =C-x r x a=,
++ la configuration actuelle des /frames/ dans la fenêtre courante (=C-x r f a=) ou même de toutes les fenêtres (=C-x r w a=),
++ … Ou d'autres choses encore (=C-x r C-h=)
+
+*** But #4 : /registers/ (3/3)
+
+Pour récupérer le contenu du /register/ a (par exemple) :
+- =C-x r i a= pour coller ce qu'il contient (région ou rectangle) ;
+- =C-x r i a= pour sauter vers ce qu'il pointe (position, configuration des /frames/ ou fenêtres)
+
 * Chapitre 3 : maîtrise
 
+** But #1 : packages-as-code
 
-** Garder votre =.emacs.d/init.el= lisible
+L'installation des paquetages a été faite à la main et n'est donc pas as-code. Frustrations prévisibles lors de la prochaine mise à jour d'Emacs…
 
-*** Déplacer les customizations dans un fichier à part
+→ Solution : apprendre et mettre en œuvre [[https://github.com/quelpa/quelpa][quelpa]] et [[https://github.com/quelpa/quelpa-use-package][quelpa-use-package]]
 
-(require 'custom)
-(setq custom-file (concat user-emacs-directory "/emacs-custom.el"))
-(when (file-exists-p custom-file) (load-file custom-file))
+** But #2 : aller plus loin avec org-mode
 
-- Employer Quelpa et use-package
-- =add-hook=, 
+org-mode pour les présentations : [[https://github.com/hexmode/ox-reveal][org-reveal]]
 
+*** But #2 : aller plus loin avec org-mode
+
+org-mode pour le /getting things done/ :
+
+- En-têtes TODO : =M-S-RET= et =C-c / t=
+-
+  #+BEGIN_SRC elisp
+  (global-set-key [(control c) (.)] 'org-time-stamp)
+  #+END_SRC
+
+*** But #2 : aller plus loin avec org-mode
+
+org-mode comme un outil de carnet de laboratoire :
+  - org-babel : j'inclus des scripts dans mon fichier .org; je les exécute; leur résultat est inclus dans le document org
+  - hyperliens vers d'autres fichiers (comme par exemple du code source) avec =C-c C-l= :
+    #+BEGIN_SRC elisp
+      (global-set-key [(control c) (control l)] 'org-store-link)
+      ;; C-c C-l déjà utilisé dans d'autres modes, mais je veux la version d'org-mode
+      (dolist (cons-mode-map `((cc-mode . c-mode-base-map)
+                               (python-mode . python-mode-map)
+                               (python . python-mode-map)
+                               (sh-script . sh-mode-map)
+                               (web-mode . web-mode-map)))
+        (with-eval-after-load (car cons-mode-map)
+          (define-key (symbol-value (cdr cons-mode-map))
+            [(control c) (control l)] nil)))
+    #+END_SRC
+
+** But #3 : Emacs comme IDE (1/2)
+
+… Ce n'est pas le plus simple.
+
+- En 2022, Emacs ne peut pas espérer régater avec IntelliJ (par exemple) sur le plan des fonctionnalités
+- … Mais il reste plus rapide, et peut donc aider les “power users”.
+
+*** But #3 : Emacs comme IDE (2/2)
+
+- Commencer par le [[https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop][REPL]] d'un langage de script :
+  - =M-x R= (du paquetage =ess=)
+  - =M-x run-python=
+- Continuer avec [[https://github.com/emacs-lsp/lsp-mode][LSP]] pour votre langage préféré
+- Pour la navigation dans la lecture du code source : [[https://www.emacswiki.org/emacs/EmacsTags][ETags]]
+
+** But #4 : Apprendre Emacs Lisp
+
+- Un plan de route : https://emacs.stackexchange.com/questions/47318/how-can-i-start-learning-emacs-lisp
+- =M-x info <RET> (elisp) <RET>=
+- Choisir un dialecte «moderne»
+  - [[https://www.gnu.org/software/emacs/manual/html_mono/cl.html][Paquetage cl]]
+  - =lexical-binding: t=
