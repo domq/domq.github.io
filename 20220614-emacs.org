@@ -392,7 +392,7 @@ Pour récupérer le contenu du /register/ a (par exemple) :
 
 L'installation des paquetages a été faite à la main et n'est donc pas as-code. Frustrations prévisibles lors de la prochaine mise à jour d'Emacs…
 
-→ Solution : apprendre et mettre en œuvre [[https://github.com/quelpa/quelpa][quelpa]] et [[https://github.com/quelpa/quelpa-use-package][quelpa-use-package]]
+→ Solution : apprendre et mettre en œuvre [[https://github.com/radian-software/straight.el][straight]] qui s'intègre avec =use-package=
 
 ** But #2 : aller plus loin avec org-mode
 
