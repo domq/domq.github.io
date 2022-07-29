@@ -340,11 +340,25 @@ Exercice : que font les combinaisons de touches suivantes ?
 - =C-x 1=
 - =C-x 0=
 
-** But #2 : framework(s) de complétion
+** But #2 : Emacs comme serveur
+
+#+BEGIN_SRC bash
+cat > $HOME/bin/emacsedit <<SCRIPT
+#!/bin/sh
+/usr/local/Cellar/emacs-plus@28/28.1/bin/emacsclient "$@"
+SCRIPT
+
+chmod a+x $HOME/bin/emacsedit
+export EDITOR=$HOME/bin/emacsedit
+#+END_SRC
+
+Tester avec =git commit=
+
+** But #3 : framework(s) de complétion
 
 Si [[#complétion][pas déjà fait]]
 
-** But #3 : gérer le code dans =~/.emacs.d/=
+** But #4 : gérer le code dans =~/.emacs.d/=
 
 - Y créer un dépôt Git (facile)
 - Déplacer les customizations dans un fichier à part (qu'on pourra choisir de =.gitignore= r) :
@@ -354,11 +368,11 @@ Si [[#complétion][pas déjà fait]]
   (when (file-exists-p custom-file) (load-file custom-file))
   #+END_SRC
 
-** But #4 : /registers/ (1/3)
+** But #5 : /registers/ (1/3)
 
 {{{vocabulaire}}} : un “register" est comme signet de navigateur généralisé. Il a un nom en une lettre, choisie par l'utilisateur ("a" dans les exemples qui suivent).
 
-*** But #4 : /registers/ (2/3)
+*** But #5 : /registers/ (2/3)
 
 On peut par exemple stocker dans le /register/ =a= :
 + le point actuel dans un buffer : =C-x r SPC a=,
@@ -366,7 +380,7 @@ On peut par exemple stocker dans le /register/ =a= :
 + la configuration actuelle des /frames/ dans la fenêtre courante (=C-x r f a=) ou même de toutes les fenêtres (=C-x r w a=),
 + … Ou d'autres choses encore (=C-x r C-h=)
 
-*** But #4 : /registers/ (3/3)
+*** But #5 : /registers/ (3/3)
 
 Pour récupérer le contenu du /register/ a (par exemple) :
 - =C-x r i a= pour coller ce qu'il contient (région ou rectangle) ;
