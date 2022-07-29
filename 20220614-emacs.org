@@ -321,6 +321,7 @@ Je consacre du temps pour maîtriser les “power features” d'Emacs 💪 :
 
 - Je lis une fois en entier la page d'Info (=M-x info=) d'Emacs (=g (emacs) <RET>=)
   - 💡 =M-x widen= pour tout voir d'un seul coup (sans navigation) !
+    - {{{vocabulaire}}} : narrowing
 - Je me crée un compte sur l'[[https://www.emacswiki.org/][EmacsWiki]]
 - Je m'abonne à [[https://www.reddit.com/r/emacs/][/r/emacs]]
 - Je lis [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]] et [[https://emacsrocks.com/][Emacs Rocks]]
