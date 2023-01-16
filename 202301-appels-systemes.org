@@ -1,0 +1,48 @@
+#+TITLE: Qu'est-ce qu'un appel système ?
+
+#+DATE: 24.01.2023
+#+AUTHOR: Dominique Quatravaux
+#+EMAIL: dominique.quatravaux@epfl.ch
+#+LANGUAGE: fr
+#+OPTIONS: timestamp:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND: https://www.meme-arsenal.com/memes/f3de6b53b1a7344ba7eb1e6869157951.jpg
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.7
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/
+
+#+REVEAL_HEAD_PREAMBLE: <style type="text/css">
+#+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
+#+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
+#+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
+#+REVEAL_HEAD_PREAMBLE:  code {  color: lightblue; }
+#+REVEAL_HEAD_PREAMBLE: </style>
+
+* Qu'est-ce qu'un noyau ?
+    :PROPERTIES:
+    :reveal_background: https://amanksmarket.nl/wp-content/uploads/2022/01/avocado.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+
+* +Qu'est-ce qu'un noyau ?+ Qu'est-ce qu'un processeur ?
+    :PROPERTIES:
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/images/cpu-advocado.png?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+** Central Processing Unit
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/images/ordinateur-en-ficelle.jpeg?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (roll-in roll-in)
+    - Registres : des variables en portes logiques !
+    - ALU : Unité Arithmétique et Logique
+    - Séquenceur : quoi faire, quand
+      - Soustraire R1 et R2
+      - Si le résultat est négatif sauter 5 pas de programme plus loin
+
