@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Qu'est-ce qu'un appel système ?</title>
+<meta name="author" content="Dominique Quatravaux"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/theme/black.css" id="theme"/>
+<style type="text/css">
+.reveal ul { display: inherit; }
+section.slide-text-white { color: white; }
+p.small { font-size: 0.6em; text-align: justify; }
+code {  color: lightblue; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="https://www.meme-arsenal.com/memes/f3de6b53b1a7344ba7eb1e6869157951.jpg" data-background-opacity="0.7">
+<h1 class="title">Qu'est-ce qu'un appel système ?</h1><h2 class="author">Dominique Quatravaux</h2><h2 class="date">24.01.2023</h2>
+</section>
+
+<section>
+<section id="slide-org7d63808" data-background="https://amanksmarket.nl/wp-content/uploads/2022/01/avocado.jpeg" data-background-opacity="0.4">
+<h2 id="org7d63808">Qu'est-ce qu'un noyau ?</h2>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org940d025" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/cpu-advocado.png?raw=true" data-background-opacity="0.4">
+<h2 id="org940d025"><del>Qu'est-ce qu'un noyau ?</del> Qu'est-ce qu'un processeur ?</h2>
+
+</section>
+<section id="slide-org3f9eeea" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true" data-background-opacity="0.4">
+<h3 id="org3f9eeea">Central Processing Unit</h3>
+<ul>
+<li class="fragment roll-in">Registres : des variables en portes logiques !</li>
+<li class="fragment roll-in">ALU : Unité Arithmétique et Logique</li>
+<li class="fragment roll-in">Séquenceur : quoi faire, quand
+<ul>
+<li>Soustraire R1 et R2</li>
+<li>Si le résultat est négatif sauter 5 pas de programme plus loin</li>
+<li>&#x2026;</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org8ab2fc9" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/terminal-top.png?raw=true" data-background-opacity="0.4">
+<h3 id="org8ab2fc9">CPU ?</h3>
+<aside class="notes">
+<p>
+«Le CPU» de <code>top(1)</code>, c'est tout le sous-système CPU + RAM
+</p>
+
+</aside>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
