@@ -28,14 +28,14 @@
 
 * +Qu'est-ce qu'un noyau ?+ Qu'est-ce qu'un processeur ?
     :PROPERTIES:
-    :reveal_background: https://github.com/domq/domq.github.io/blob/main/images/cpu-advocado.png?raw=true
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/cpu-advocado.png?raw=true
     :reveal_background_opacity: 0.4
     :END:
 
 ** Central Processing Unit
     :PROPERTIES:
     :html_container_class: slide-text-white
-    :reveal_background: https://github.com/domq/domq.github.io/blob/main/images/ordinateur-en-ficelle.jpeg?raw=true
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true
     :reveal_background_opacity: 0.4
     :END:
 
@@ -45,4 +45,5 @@
     - Séquenceur : quoi faire, quand
       - Soustraire R1 et R2
       - Si le résultat est négatif sauter 5 pas de programme plus loin
+      - ...
 
