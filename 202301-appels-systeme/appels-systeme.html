@@ -21,23 +21,23 @@ code {  color: lightblue; }
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide" data-background="https://www.meme-arsenal.com/memes/f3de6b53b1a7344ba7eb1e6869157951.jpg" data-background-opacity="0.7">
-<h1 class="title">Qu'est-ce qu'un appel système ?</h1><h2 class="author">Dominique Quatravaux</h2><h2 class="date">24.01.2023</h2>
+<h1 class="title">Qu'est-ce qu'un appel système ?</h1><h2 class="subtitle">Sortie Saint-Luc ISAS-FSD</h2>
 </section>
 
 <section>
-<section id="slide-org7d63808" data-background="https://amanksmarket.nl/wp-content/uploads/2022/01/avocado.jpeg" data-background-opacity="0.4">
-<h2 id="org7d63808">Qu'est-ce qu'un noyau ?</h2>
+<section id="slide-org2ae87a3" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/advocado.webp?raw=true" data-background-opacity="0.4">
+<h2 id="org2ae87a3">Qu'est-ce qu'un noyau ?</h2>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org940d025" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/cpu-advocado.png?raw=true" data-background-opacity="0.4">
-<h2 id="org940d025"><del>Qu'est-ce qu'un noyau ?</del> Qu'est-ce qu'un processeur ?</h2>
+<section id="slide-orgddadf66" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/cpu-advocado.png?raw=true" data-background-opacity="0.4">
+<h2 id="orgddadf66"><del>Qu'est-ce qu'un noyau ?</del> Qu'est-ce qu'un processeur ?</h2>
 
 </section>
-<section id="slide-org3f9eeea" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true" data-background-opacity="0.4">
-<h3 id="org3f9eeea">Central Processing Unit</h3>
+<section id="slide-org0104277" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true" data-background-opacity="0.4">
+<h3 id="org0104277">Central Processing Unit</h3>
 <ul>
 <li class="fragment roll-in">Registres : des variables en portes logiques !</li>
 <li class="fragment roll-in">ALU : Unité Arithmétique et Logique</li>
@@ -45,21 +45,198 @@ code {  color: lightblue; }
 <ul>
 <li>Soustraire R1 et R2</li>
 <li>Si le résultat est négatif sauter 5 pas de programme plus loin</li>
-<li>&#x2026;</li>
+<li>…</li>
 
 </ul></li>
 
 </ul>
 
 </section>
-<section id="slide-org8ab2fc9" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/terminal-top.png?raw=true" data-background-opacity="0.4">
-<h3 id="org8ab2fc9">CPU ?</h3>
+<section id="slide-orgb98f3af" data-background="https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/terminal-top.png?raw=true" data-background-opacity="0.4">
+<h3 id="orgb98f3af">C'est (presque) suffisant !</h3>
+<p>
+… Pour un seul programme
+</p>
+
+<p class="fragment">
+… sur un seul ordinateur (ou des ordinateurs tous identiques).
+</p>
+
+<aside class="notes">
+<ul>
+<li>Memory-mapped I/O</li>
+<li>Interruptions</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgda37140" data-background="https://i.imgur.com/pmBPtod.jpeg" data-background-opacity="0.4">
+<h2 id="orgda37140">À quoi sert un système d'exploitation ?</h2>
+
+</section>
+<section id="slide-org4313816" data-background="https://i.imgur.com/szpSymM.jpeg" data-background-opacity="0.4">
+<h3 id="org4313816">À quoi sert un système d'exploitation ?</h3>
+<ul>
+<li class="fragment">Lancer plusieurs programmes
+<ul>
+<li class="fragment">En même temps</li>
+<li class="fragment">… Même si un seul processeur est disponible</li>
+
+</ul></li>
+<li class="fragment">Sur des ordinateurs similaires — Mais pas identiques</li>
+
+</ul>
+
+</section>
+<section id="slide-org9bf33cc" data-background="https://i.imgur.com/pXBP88d.jpeg" data-background-opacity="0.4">
+<h3 id="org9bf33cc">Mais encore…</h3>
+<ul>
+<li class="fragment">Isolation des pannes</li>
+<li class="fragment">Multi-tâches pré-emptif</li>
+<li class="fragment">Sécurité</li>
+
+</ul>
+
 <aside class="notes">
 <p>
-«Le CPU» de <code>top(1)</code>, c'est tout le sous-système CPU + RAM
+Sauf dans les cas les plus simples (Windows® version 2…), la mission du système d'exploitation a une dimension <b>adversariale</b> : les programmes peuvent être bogués, voire hostiles.
 </p>
 
 </aside>
+
+</section>
+<section id="slide-orgceb501e" data-background="https://i.imgur.com/Qdgqgvd.jpeg" data-background-opacity="0.4">
+<h3 id="orgceb501e">Hardware à la rescousse</h3>
+<ul>
+<li class="fragment">Mémoire virtuelle (pagination)
+<ul>
+<li class="fragment">Tous les programmes peuvent croire qu'ils s'exécutent à la même adresse</li>
+
+</ul></li>
+<li class="fragment">Mode superviseur
+<ul>
+<li class="fragment">Réserve certaines actions (ex : configurer la mémoire virtuelle) au seul système d'exploitation</li>
+
+</ul></li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Q : qu'entend-on ici par mémoire virtuelle ?
+<ul>
+<li>R : ce n'est pas le swap, mais la fonction “physical → virtual”. Voir plus loin…</li>
+
+</ul></li>
+<li>Q : connaissez-vous d'autres fonctionnalités du processeur conçues spécialement pour l'usage du système d'exploitation ?</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9ed68ef" data-background="https://i.imgur.com/KDi612N.jpeg" data-background-opacity="0.4">
+<h2 id="org9ed68ef">Processus</h2>
+<p>
+Sur ces bases matérielles, le noyau du système d'exploitation organise la vie des <b>processus</b>.
+</p>
+
+</section>
+<section id="slide-orgd18cfd4" data-background="https://pemptousia.com/files/2012/07/ORIGINAL-SIN2.jpg" data-background-opacity="0.4">
+<h3 id="orgd18cfd4">Fautes</h3>
+<p>
+Lorsqu'un processus
+</p>
+
+<ul>
+<li class="fragment">accède à une adresse virtuelle inexistante</li>
+<li class="fragment">exécute une instruction privilégiée</li>
+
+</ul>
+
+</section>
+<section id="slide-org62c9605" data-background="https://upload.wikimedia.org/wikipedia/commons/3/3d/Chora_Church_Constantinople_2007_013.jpg" data-background-opacity="0.5">
+<h3 id="org62c9605">… pas forcément fatales</h3>
+<p>
+Plutôt que tuer le processus, le noyau peut aussi…
+</p>
+
+<ul>
+<li class="fragment">ressortir la page du swap, et rendre la main au programme</li>
+<li class="fragment"><b>honorer un appel système</b></li>
+
+</ul>
+
+</section>
+<section id="slide-orgdb68a05" data-background="https://i.imgur.com/SViaZ7w_d.webp" data-background-size="contain" data-background-opacity="0.4">
+<h3 id="orgdb68a05">Appels système UNIX</h3>
+<ul>
+<li>Mémoire : <code>sbrk(2)</code>, <code>mmap(2)</code>, <code>munmap(2)</code></li>
+<li>Fichiers : <code>open(2)</code>, <code>read(2)</code>, <code>write(2)</code>, <code>close(2)</code></li>
+<li>Réseau : <code>socket(2)</code>, <code>bind(2)</code>, <code>listen(2)</code>, <code>accept(2)</code></li>
+
+</ul>
+
+<p>
+etc.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org2f87a41" data-background="https://1000idcg.com/wp-content/uploads/2019/03/%C2%AB-Connais-toi-toi-me%CC%82me-%C2%BB-Socrate.jpg" data-background-size="contain" data-background-opacity="0.4">
+<h2 id="org2f87a41">Prison</h2>
+
+</section>
+<section id="slide-org5cb117a">
+<h3 id="org5cb117a">Médiation totale de la causalité</h3>
+<p>
+Les droits inaliénables d'un processus UNIX :
+</p>
+<ul>
+<li>Exécuter son code</li>
+<li>Lire / écrire ses données</li>
+
+</ul>
+
+<p class="fragment">
+<b>Pour tout le reste : il doit demander au noyau.</b>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org36b56bb">
+<h2 id="org36b56bb">Démonstration</h2>
+<p>
+<code>strace(1)</code>
+</p>
+
+<p>
+
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org86efa95">
+<h2 id="org86efa95">Table des matières</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-org2ae87a3">Qu'est-ce qu'un noyau ?</a></li>
+<li><a href="#/slide-orgddadf66"><del>Qu'est-ce qu'un noyau ?</del> Qu'est-ce qu'un processeur ?</a></li>
+<li><a href="#/slide-orgda37140">À quoi sert un système d'exploitation ?</a></li>
+<li><a href="#/slide-org9ed68ef">Processus</a></li>
+<li><a href="#/slide-org2f87a41">Prison</a></li>
+<li><a href="#/slide-org36b56bb">Démonstration</a></li>
+</ul>
+</div>
 </section>
 </section>
 </div>

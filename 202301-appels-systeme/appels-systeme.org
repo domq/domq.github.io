@@ -1,18 +1,19 @@
 #+TITLE: Qu'est-ce qu'un appel système ?
+#+SUBTITLE: Sortie Saint-Luc ISAS-FSD
 
 #+DATE: 24.01.2023
 #+AUTHOR: Dominique Quatravaux
 #+EMAIL: dominique.quatravaux@epfl.ch
 #+LANGUAGE: fr
-#+OPTIONS: timestamp:nil
+
 #+OPTIONS: toc:nil
 #+OPTIONS: num:nil
-
+#+REVEAL_TITLE_SLIDE: <h1 class="title">%t</h1><h2 class="subtitle">%s</h2>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: https://www.meme-arsenal.com/memes/f3de6b53b1a7344ba7eb1e6869157951.jpg
 #+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.7
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/
 
-#+REVEAL_HEAD_PREAMBLE: <style type="text/css">
+#+REVEAL_HEAD_PREAMBLE:<style type="text/css">
 #+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
 #+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
 #+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
@@ -21,12 +22,12 @@
 
 * Qu'est-ce qu'un noyau ?
     :PROPERTIES:
-    :reveal_background: https://amanksmarket.nl/wp-content/uploads/2022/01/avocado.jpeg
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/advocado.webp?raw=true
     :reveal_background_opacity: 0.4
     :END:
 
 
-* +Qu'est-ce qu'un noyau ?+ Qu'est-ce qu'un processeur ?
+* +Qu'est-ce qu'un noyau ?+ Qu'est-ce qu'un processeur ?
     :PROPERTIES:
     :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/cpu-advocado.png?raw=true
     :reveal_background_opacity: 0.4
@@ -45,5 +46,152 @@
     - Séquenceur : quoi faire, quand
       - Soustraire R1 et R2
       - Si le résultat est négatif sauter 5 pas de programme plus loin
-      - ...
+      - …
 
+** C'est (presque) suffisant !
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/terminal-top.png?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+… Pour un seul programme
+
+#+ATTR_REVEAL: :frag t
+… sur un seul ordinateur (ou des ordinateurs tous identiques).
+
+#+BEGIN_NOTES
+- Memory-mapped I/O
+- Interruptions
+#+END_NOTES
+
+* À quoi sert un système d'exploitation ?
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/pmBPtod.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+** À quoi sert un système d'exploitation ?
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/szpSymM.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (t)
+    - Lancer plusieurs programmes
+      #+ATTR_REVEAL: :frag (t)
+      + En même temps
+      + … Même si un seul processeur est disponible
+    - Sur des ordinateurs similaires — Mais pas identiques
+
+** Mais encore…
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/pXBP88d.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (t)
+- Isolation des pannes
+- Multi-tâches pré-emptif
+- Sécurité
+
+#+BEGIN_NOTES
+Sauf dans les cas les plus simples (Windows® version 2…), la mission du système d'exploitation a une dimension *adversariale* : les programmes peuvent être bogués, voire hostiles.
+#+END_NOTES
+
+** Hardware à la rescousse
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/Qdgqgvd.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (t)
+- Mémoire virtuelle (pagination)
+  #+ATTR_REVEAL: :frag (t)
+  - Tous les programmes peuvent croire qu'ils s'exécutent à la même adresse
+- Mode superviseur
+  #+ATTR_REVEAL: :frag (t)
+  - Réserve certaines actions (ex : configurer la mémoire virtuelle) au seul système d'exploitation
+
+#+BEGIN_NOTES
+- Q : qu'entend-on ici par mémoire virtuelle ?
+  - R : ce n'est pas le swap, mais la fonction “physical → virtual”. Voir plus loin…
+- Q : connaissez-vous d'autres fonctionnalités du processeur conçues spécialement pour l'usage du système d'exploitation ?
+#+END_NOTES
+
+* Processus
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/KDi612N.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+Sur ces bases matérielles, le noyau du système d'exploitation organise la vie des *processus*.
+
+** Fautes
+    :PROPERTIES:
+    :reveal_background: https://pemptousia.com/files/2012/07/ORIGINAL-SIN2.jpg
+    :reveal_background_opacity: 0.4
+    :END:
+
+Lorsqu'un processus
+
+#+ATTR_REVEAL: :frag (t)
+- accède à une adresse virtuelle inexistante
+- exécute une instruction privilégiée
+
+** … pas forcément fatales
+    :PROPERTIES:
+    :reveal_background: https://upload.wikimedia.org/wikipedia/commons/3/3d/Chora_Church_Constantinople_2007_013.jpg
+    :reveal_background_opacity: 0.5
+    :END:
+
+Plutôt que tuer le processus, le noyau peut aussi…
+
+#+ATTR_REVEAL: :frag (t)
+- ressortir la page du swap, et rendre la main au programme
+- *honorer un appel système*
+
+** Appels système UNIX
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/SViaZ7w_d.webp
+    :reveal_background_size: contain
+    :reveal_background_opacity: 0.4
+    :END:
+
+- Mémoire : ~sbrk(2)~, ~mmap(2)~, ~munmap(2)~
+- Fichiers : ~open(2)~, ~read(2)~, ~write(2)~, ~close(2)~
+- Réseau : ~socket(2)~, ~bind(2)~, ~listen(2)~, ~accept(2)~
+
+etc.
+
+* Prison
+    :PROPERTIES:
+    :reveal_background: https://1000idcg.com/wp-content/uploads/2019/03/%C2%AB-Connais-toi-toi-me%CC%82me-%C2%BB-Socrate.jpg
+    :reveal_background_size: contain
+    :reveal_background_opacity: 0.4
+    :END:
+
+** Médiation totale de la causalité
+
+Les droits inaliénables d'un processus UNIX :
+- Exécuter son code
+- Lire / écrire ses données
+
+#+ATTR_REVEAL: :frag t
+*Pour tout le reste : il doit demander au noyau.*
+
+#+BEGIN_NOTES
+... Même pour exécuter ses propres données ! Exercice : trouver l'appel système qui fait ça.
+#+END_NOTES
+
+* Démonstration
+
+~strace(1)~
+
+
+
+* Table des matières
+   :PROPERTIES:
+   :UNNUMBERED: notoc
+   :END:
+#+REVEAL_TOC: headlines 1
