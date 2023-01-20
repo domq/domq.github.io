@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Qu'est-ce qu'un appel système ?</title>
+<meta name="author" content="Dominique Quatravaux"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/theme/black.css" id="theme"/>
+<style type="text/css">
+.reveal ul { display: inherit; }
+section.slide-text-white { color: white; }
+p.small { font-size: 0.6em; text-align: justify; }
+code {  color: lightblue; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="https://www.meme-arsenal.com/memes/f3de6b53b1a7344ba7eb1e6869157951.jpg" data-background-opacity="0.7">
+<h1 class="title">Qu'est-ce qu'un appel système ?</h1><h2 class="subtitle">Sortie Saint-Luc ISAS-FSD</h2>
+</section>
+
+<section>
+<section id="slide-orge6c60d3" data-background="https://i.imgur.com/pmBPtod.jpeg" data-background-opacity="0.4">
+<h2 id="orge6c60d3">Rappels : le système d'exploitation Linux</h2>
+
+</section>
+<section id="slide-org721eb26" data-background="https://i.imgur.com/Qdgqgvd.jpeg" data-background-opacity="0.4">
+<h3 id="org721eb26">Exigences matérielles (CPU)</h3>
+<ul>
+<li>Mémoire virtuelle (pagination)</li>
+<li>Mode superviseur</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Ceci est la brique avec laquelle on construit&#x2026;
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org3fae2a1" data-background="https://i.imgur.com/KDi612N.jpeg" data-background-opacity="0.4">
+<h3 id="org3fae2a1">Processus</h3>
+<p>
+Sur ces bases matérielles, le noyau du système d'exploitation organise la vie des <b>processus</b>.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc418a79">
+<h2 id="orgc418a79">Appels système</h2>
+<div class="outline-text-2" id="text-orgc418a79">
+</div>
+</section>
+<section id="slide-orgd5a8654" data-background="https://i.imgur.com/SViaZ7w_d.webp" data-background-size="contain" data-background-opacity="0.4">
+<h3 id="orgd5a8654">Appels système UNIX</h3>
+<ul>
+<li>Mémoire : <code>sbrk(2)</code>, <code>mmap(2)</code>, <code>munmap(2)</code></li>
+<li>Fichiers : <code>open(2)</code>, <code>read(2)</code>, <code>write(2)</code>, <code>close(2)</code></li>
+<li>Réseau : <code>socket(2)</code>, <code>bind(2)</code>, <code>listen(2)</code>, <code>accept(2)</code></li>
+<li>Processus, threads : <code>fork(2)</code>, <code>clone(2)</code>, <code>getpid(2)</code></li>
+
+</ul>
+
+<p>
+etc.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfec851b" data-background="https://1000idcg.com/wp-content/uploads/2019/03/%C2%AB-Connais-toi-toi-me%CC%82me-%C2%BB-Socrate.jpg" data-background-size="contain" data-background-opacity="0.4">
+<h2 id="orgfec851b">Prison</h2>
+
+</section>
+<section id="slide-orgf05887c">
+<h3 id="orgf05887c">Médiation totale de la causalité</h3>
+<p>
+Les droits inaliénables d'un processus UNIX :
+</p>
+<ul>
+<li>Exécuter son code</li>
+<li>Lire / écrire ses données</li>
+
+</ul>
+
+<p class="fragment">
+<b>Pour tout le reste : il doit demander au noyau.</b>
+</p>
+
+<aside class="notes">
+<p>
+&#x2026; Même pour exécuter ses propres données ! Exercice : trouver l'appel système qui fait ça.
+</p>
+
+<p>
+Exercice : comment le noyau empêche-t'il les programmes de faire les I/O tout seuls ? Comment le permet-il ?
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orged930f1">
+<h2 id="orged930f1">Démonstration</h2>
+<p>
+<code>strace(1)</code>
+</p>
+
+<p>
+
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org77581bf">
+<h2 id="org77581bf">Table des matières</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-orge6c60d3">Rappels : le système d'exploitation Linux</a></li>
+<li><a href="#/slide-orgc418a79">Appels système</a></li>
+<li><a href="#/slide-orgfec851b">Prison</a></li>
+<li><a href="#/slide-orged930f1">Démonstration</a></li>
+</ul>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/search/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+
+transition: 'convex',
+transitionSpeed: 'default',
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

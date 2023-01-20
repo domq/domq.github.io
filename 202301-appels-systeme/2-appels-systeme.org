@@ -1,0 +1,98 @@
+#+TITLE: Qu'est-ce qu'un appel système ?
+#+SUBTITLE: Sortie Saint-Luc ISAS-FSD
+
+#+DATE: 24.01.2023
+#+AUTHOR: Dominique Quatravaux
+#+EMAIL: dominique.quatravaux@epfl.ch
+#+LANGUAGE: fr
+
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+REVEAL_TITLE_SLIDE: <h1 class="title">%t</h1><h2 class="subtitle">%s</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: https://www.meme-arsenal.com/memes/f3de6b53b1a7344ba7eb1e6869157951.jpg
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.7
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/
+
+#+REVEAL_HEAD_PREAMBLE:<style type="text/css">
+#+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
+#+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
+#+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
+#+REVEAL_HEAD_PREAMBLE:  code {  color: lightblue; }
+#+REVEAL_HEAD_PREAMBLE: </style>
+
+* Rappels : le système d'exploitation Linux
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/pmBPtod.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+** Exigences matérielles (CPU)
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/Qdgqgvd.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+- Mémoire virtuelle (pagination)
+- Mode superviseur
+
+#+BEGIN_NOTES
+Ceci est la brique avec laquelle on construit...
+#+END_NOTES
+
+** Processus
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/KDi612N.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+Sur ces bases matérielles, le noyau du système d'exploitation organise la vie des *processus*.
+
+* Appels système
+
+** Appels système UNIX
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/SViaZ7w_d.webp
+    :reveal_background_size: contain
+    :reveal_background_opacity: 0.4
+    :END:
+
+- Mémoire : ~sbrk(2)~, ~mmap(2)~, ~munmap(2)~
+- Fichiers : ~open(2)~, ~read(2)~, ~write(2)~, ~close(2)~
+- Réseau : ~socket(2)~, ~bind(2)~, ~listen(2)~, ~accept(2)~
+- Processus, threads : ~fork(2)~, ~clone(2)~, ~getpid(2)~
+
+etc.
+
+* Prison
+    :PROPERTIES:
+    :reveal_background: https://1000idcg.com/wp-content/uploads/2019/03/%C2%AB-Connais-toi-toi-me%CC%82me-%C2%BB-Socrate.jpg
+    :reveal_background_size: contain
+    :reveal_background_opacity: 0.4
+    :END:
+
+** Médiation totale de la causalité
+
+Les droits inaliénables d'un processus UNIX :
+- Exécuter son code
+- Lire / écrire ses données
+
+#+ATTR_REVEAL: :frag t
+*Pour tout le reste : il doit demander au noyau.*
+
+#+BEGIN_NOTES
+... Même pour exécuter ses propres données ! Exercice : trouver l'appel système qui fait ça.
+
+Exercice : comment le noyau empêche-t'il les programmes de faire les I/O tout seuls ? Comment le permet-il ?
+#+END_NOTES
+
+* Démonstration
+
+~strace(1)~
+
+
+
+* Table des matières
+   :PROPERTIES:
+   :UNNUMBERED: notoc
+   :END:
+#+REVEAL_TOC: headlines 1

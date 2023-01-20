@@ -1,0 +1,219 @@
+#+TITLE: Le noyau Linux
+#+SUBTITLE: Sortie Saint-Luc ISAS-FSD
+
+#+DATE: 24.01.2023
+#+AUTHOR: Dominique Quatravaux
+#+EMAIL: dominique.quatravaux@epfl.ch
+#+LANGUAGE: fr
+
+#+OPTIONS: toc:nil
+#+OPTIONS: num:nil
+#+REVEAL_TITLE_SLIDE: <h1 class="title">%t</h1><h2 class="subtitle">%s</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: https://i.imgur.com/pmBPtod.jpeg
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.7
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/
+
+#+REVEAL_HEAD_PREAMBLE:<style type="text/css">
+#+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
+#+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
+#+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
+#+REVEAL_HEAD_PREAMBLE:  code {  color: lightblue; }
+#+REVEAL_HEAD_PREAMBLE: </style>
+
+* Qu'est-ce qu'un noyau ?
+    :PROPERTIES:
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/advocado.webp?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag t
+Le travail du système d'exploitation :
+
+#+ATTR_REVEAL: :frag (t)
+    - Lancer plusieurs programmes
+      #+ATTR_REVEAL: :frag (t)
+      + En même temps
+      + … Même si un seul processeur est disponible
+    - Sur votre ordinateur
+      #+ATTR_REVEAL: :frag (t)
+      - Qui ressemble à celui de votre collègue
+      - … Mais n'est pas identique
+
+** Mais encore…
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/pXBP88d.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (t)
+- Isolation des pannes
+- Multi-tâches pré-emptif
+- Sécurité
+
+#+BEGIN_NOTES
+Sauf dans les cas les plus simples (Windows® version 2…), la mission du système d'exploitation a une dimension *adversariale* : les programmes peuvent être bogués, voire hostiles.
+#+END_NOTES
+
+
+* +Qu'est-ce qu'un noyau ?+ Qu'est-ce qu'un processeur ?
+    :PROPERTIES:
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/cpu-advocado.png?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+** Unité arithmétique et logique
+
+https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Pascaline-CnAM_823-2-IMG_1510-black.jpg/1599px-Pascaline-CnAM_823-2-IMG_1510-black.jpg?20161118175032
+
+
+#+BEGIN_NOTES
+Un peu d'histoire... Et de physique
+
+La Pascaline marche avec des engrenages; elle ne sait faire que des additions.
+
+#+END_NOTES
+
+** Unité arithmétique et logique
+
+https://upload.wikimedia.org/wikipedia/commons/4/46/Calculator_divisumma24_hg.jpg
+
+
+#+BEGIN_NOTES
+
+On a mené cette expérience au bout, bien avant les transistors.
+
+#+END_NOTES
+
+** Séquenceur
+
+https://upload.wikimedia.org/wikipedia/commons/a/ac/AnalyticalMachine_Babbage_London.jpg
+
+** Séquenceur
+
+https://www.orgues-de-barbarie.com/wp-content/uploads/2017/07/27-touches-a%CC%80-flutesen-Do-ou-27-anches-en-la-.-2-registres-en-noyer-massif-887x465.jpg
+
+** Registres
+
+https://4.bp.blogspot.com/-GMON0Kxbv0s/XD36GBEtO7I/AAAAAAAABEU/YbJJMsgmjJENywcTCTbLjuHS1ztQhhNMACLcBGAs/s1600/register%2Bcircuit%2Bdiagram.png
+
+** Registres
+
+https://i.imgur.com/4JsFE.png
+
+** Processeur
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag roll-in
+https://lh3.googleusercontent.com/-9v3NpsusM8U/WMbKgFfzvfI/AAAAAAABAr0/_r2bFiVP7WcLnc91XH0V6fbzQC9JRhd-gCHM/w9999/die-stack-block-diagram.jpg
+
+** Processeur
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (roll-in)
+    - UAL : Unité Arithmétique et Logique
+    - Registres : des variables gravées en portes logiques !
+    - Séquenceur : lit une instruction, la décode, l'exécute
+
+** Programme
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://www.researchgate.net/profile/Asifullah-Khan/publication/336796651/figure/fig3/AS:817730294915072@1571973503294/Assembly-code-of-ASM-file.ppm
+    :reveal_background_opacity: 0.4
+    :END:
+
+      - Lire R2 depuis <adresse>
+      - Soustraire R1 et R2
+      - Si le résultat est négatif sauter 5 instructions plus loin
+      - …
+
+** Assaisonnements
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://i.imgur.com/K3QAgLu.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (roll-in)
+    - Entrées-sorties /memory-mapped/
+    - Interruptions
+    - Pile
+
+** C'est (presque) suffisant !
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/terminal-top.png?raw=true
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag t
+… Pour un seul programme
+
+#+ATTR_REVEAL: :frag t
+… sur un seul ordinateur (ou des ordinateurs tous identiques).
+
+#+ATTR_REVEAL: :frag t
+*Il nous manque encore un ou deux super-pouvoirs.*
+
+** Hardware à la rescousse
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/Qdgqgvd.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag (t)
+- Mémoire virtuelle (pagination)
+  #+ATTR_REVEAL: :frag (t)
+  - Pour faire croire aux programmes qu'ils s'exécutent tous à la même adresse
+- Mode superviseur
+  #+ATTR_REVEAL: :frag (t)
+  - Réserve certaines actions (ex : configurer la mémoire virtuelle) au seul système d'exploitation
+
+* Fautes
+    :PROPERTIES:
+    :reveal_background: https://pemptousia.com/files/2012/07/ORIGINAL-SIN2.jpg
+    :reveal_background_opacity: 0.4
+    :END:
+
+Le noyau prend la main lorsqu'un programme
+
+#+ATTR_REVEAL: :frag (t)
+- accède à une adresse virtuelle inexistante
+- exécute une instruction privilégiée
+
+** … pas forcément fatales
+    :PROPERTIES:
+    :reveal_background: https://upload.wikimedia.org/wikipedia/commons/3/3d/Chora_Church_Constantinople_2007_013.jpg
+    :reveal_background_opacity: 0.5
+    :END:
+
+Plutôt que tuer le processus, le noyau peut aussi…
+
+#+ATTR_REVEAL: :frag (t)
+- ressortir la page absente du swap, ou bien
+- *honorer un appel système*
+
+#+ATTR_REVEAL: :frag t
+... et rendre la main au programme.
+
+* Constructions
+    :PROPERTIES:
+    :reveal_background: https://i.imgur.com/O4TZNNt.png
+    :reveal_background_opacity: 0.4
+    :END:
+
+#+ATTR_REVEAL: :frag t
+Comment mettriez-vous en œuvre les fonctionnalités suivantes ?
+
+#+ATTR_REVEAL: :frag (t)
+- Isolation de la mémoire pour chaque processus
+- Multi-tâches pré-emptif
+- Mémoire virtuelle sur disque (swap)
+
