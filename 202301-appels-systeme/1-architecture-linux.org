@@ -122,6 +122,10 @@ https://lh3.googleusercontent.com/-9v3NpsusM8U/WMbKgFfzvfI/AAAAAAABAr0/_r2bFiVP7
     - Registres : des variables gravées en portes logiques !
     - Séquenceur : lit une instruction, la décode, l'exécute
 
+** Mémoire
+
+https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/221220950/figure/fig2/AS:305676883644417@1449890456267/Internal-structure-of-a-RAM-Am-plifiers-and-cells.png
+
 ** Programme
     :PROPERTIES:
     :html_container_class: slide-text-white
