@@ -1,5 +1,5 @@
 #+TITLE: Le noyau Linux
-#+SUBTITLE: Sortie Saint-Luc ISAS-FSD
+#+SUBTITLE: Partie 1 : demandes matérielles
 
 #+DATE: 24.01.2023
 #+AUTHOR: Dominique Quatravaux
@@ -16,8 +16,10 @@
 #+REVEAL_HEAD_PREAMBLE:<style type="text/css">
 #+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
 #+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
+#+REVEAL_HEAD_PREAMBLE:  section.slide-background-white { background-color: white; }
 #+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
 #+REVEAL_HEAD_PREAMBLE:  code {  color: lightblue; }
+#+REVEAL_HEAD_PREAMBLE:  svg { height: 55vh; }
 #+REVEAL_HEAD_PREAMBLE: </style>
 
 * Qu'est-ce qu'un noyau ?
@@ -86,10 +88,6 @@ On a mené cette expérience au bout, bien avant les transistors.
 
 ** Séquenceur
 
-https://upload.wikimedia.org/wikipedia/commons/a/ac/AnalyticalMachine_Babbage_London.jpg
-
-** Séquenceur
-
 https://www.orgues-de-barbarie.com/wp-content/uploads/2017/07/27-touches-a%CC%80-flutesen-Do-ou-27-anches-en-la-.-2-registres-en-noyer-massif-887x465.jpg
 
 ** Registres
@@ -120,7 +118,7 @@ https://lh3.googleusercontent.com/-9v3NpsusM8U/WMbKgFfzvfI/AAAAAAABAr0/_r2bFiVP7
 #+ATTR_REVEAL: :frag (roll-in)
     - UAL : Unité Arithmétique et Logique
     - Registres : des variables gravées en portes logiques !
-    - Séquenceur : lit une instruction, la décode, l'exécute
+    - Séquenceur : lit une instruction en mémoire, la décode, l'exécute
 
 ** Mémoire
 
@@ -138,19 +136,43 @@ https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/2212209
       - Si le résultat est négatif sauter 5 instructions plus loin
       - …
 
-** Assaisonnements
+** Processeur++
     :PROPERTIES:
     :html_container_class: slide-text-white
-    :reveal_background: https://i.imgur.com/K3QAgLu.jpeg
+    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true
     :reveal_background_opacity: 0.4
     :END:
 
-#+ATTR_REVEAL: :frag (roll-in)
-    - Entrées-sorties /memory-mapped/
-    - Interruptions
-    - Pile
+    - UAL
+    - Registres
+    - Séquenceur
 
-** C'est (presque) suffisant !
+#+ATTR_REVEAL: :frag roll-in
+#+REVEAL_HTML: <hr/>
+
+#+ATTR_REVEAL: :frag (roll-in)
+    - Pile : pour ne pas oublier ce qu'on était en train de faire…
+      #+ATTR_REVEAL: :frag (roll-in)
+      - Par exemple, en revenant d'un appel de fonction
+    - Interruptions : pour s'occuper des entrées-sorties lorsqu'elles arrivent
+
+** Carte mère
+    :PROPERTIES:
+    :CUSTOM_ID: carte-mère
+    :html_container_class: slide-text-white
+    :reveal_background: https://i.imgur.com/QF2P2Im.jpeg
+    :reveal_background_opacity: 0.4
+    :END:
+
+    #+ATTR_REVEAL: :frag (roll-in)
+      - Périphériques
+      - Entrées-sorties /memory-mapped/
+      - /Chipset/
+        #+ATTR_REVEAL: :frag (roll-in)
+        - Contrôleur d'interruptions
+        - Horloge programmable
+
+** ... C'est suffisant cette fois ?
     :PROPERTIES:
     :html_container_class: slide-text-white
     :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/terminal-top.png?raw=true
@@ -163,24 +185,28 @@ https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/2212209
 #+ATTR_REVEAL: :frag t
 … sur un seul ordinateur (ou des ordinateurs tous identiques).
 
-#+ATTR_REVEAL: :frag t
-*Il nous manque encore un ou deux super-pouvoirs.*
-
-** Hardware à la rescousse
+** Fonctions du processeur pour le système d'exploitation
     :PROPERTIES:
     :reveal_background: https://i.imgur.com/Qdgqgvd.jpeg
     :reveal_background_opacity: 0.4
     :END:
 
 #+ATTR_REVEAL: :frag (t)
-- Mémoire virtuelle (pagination)
+- **Mémoire virtuelle** paginée
   #+ATTR_REVEAL: :frag (t)
   - Pour faire croire aux programmes qu'ils s'exécutent tous à la même adresse
-- Mode superviseur
+- **Mode superviseur**
   #+ATTR_REVEAL: :frag (t)
   - Réserve certaines actions (ex : configurer la mémoire virtuelle) au seul système d'exploitation
 
-* Fautes
+* Processus
+    :PROPERTIES:
+    :html_container_class: slide-background-white
+    :END:
+
+#+INCLUDE: "images/processus.svg" export html
+
+** Fautes
     :PROPERTIES:
     :reveal_background: https://pemptousia.com/files/2012/07/ORIGINAL-SIN2.jpg
     :reveal_background_opacity: 0.4
@@ -189,7 +215,8 @@ https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/2212209
 Le noyau prend la main lorsqu'un programme
 
 #+ATTR_REVEAL: :frag (t)
-- accède à une adresse virtuelle inexistante
+- accède à une adresse virtuelle absente du TLB
+- accède dans un mode interdit (écriture, exécution)
 - exécute une instruction privilégiée
 
 ** … pas forcément fatales
@@ -207,7 +234,7 @@ Plutôt que tuer le processus, le noyau peut aussi…
 #+ATTR_REVEAL: :frag t
 ... et rendre la main au programme.
 
-* Constructions
+* Exercices
     :PROPERTIES:
     :reveal_background: https://i.imgur.com/O4TZNNt.png
     :reveal_background_opacity: 0.4
