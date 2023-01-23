@@ -63,6 +63,19 @@ Sauf dans les cas les plus simples (Windows® version 2…), la mission du syst�
     :reveal_background_opacity: 0.4
     :END:
 
+** Langage machine
+    :PROPERTIES:
+    :html_container_class: slide-text-white
+    :reveal_background: https://www.researchgate.net/profile/Asifullah-Khan/publication/336796651/figure/fig3/AS:817730294915072@1571973503294/Assembly-code-of-ASM-file.ppm
+    :reveal_background_opacity: 0.4
+    :END:
+
+      - Lire R2 depuis <adresse>
+      - Soustraire R1 et R2
+      - Si le résultat est négatif sauter 5 instructions plus loin
+      - …
+        
+
 ** Unité arithmétique et logique
 
 https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Pascaline-CnAM_823-2-IMG_1510-black.jpg/1599px-Pascaline-CnAM_823-2-IMG_1510-black.jpg?20161118175032
@@ -124,22 +137,10 @@ https://lh3.googleusercontent.com/-9v3NpsusM8U/WMbKgFfzvfI/AAAAAAABAr0/_r2bFiVP7
 
 https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/221220950/figure/fig2/AS:305676883644417@1449890456267/Internal-structure-of-a-RAM-Am-plifiers-and-cells.png
 
-** Programme
-    :PROPERTIES:
-    :html_container_class: slide-text-white
-    :reveal_background: https://www.researchgate.net/profile/Asifullah-Khan/publication/336796651/figure/fig3/AS:817730294915072@1571973503294/Assembly-code-of-ASM-file.ppm
-    :reveal_background_opacity: 0.4
-    :END:
-
-      - Lire R2 depuis <adresse>
-      - Soustraire R1 et R2
-      - Si le résultat est négatif sauter 5 instructions plus loin
-      - …
-
 ** Processeur++
     :PROPERTIES:
     :html_container_class: slide-text-white
-    :reveal_background: https://github.com/domq/domq.github.io/blob/main/202301-appels-systeme/images/ordinateur-en-ficelle.jpeg?raw=true
+    :reveal_background: https://www.researchgate.net/profile/Asifullah-Khan/publication/336796651/figure/fig3/AS:817730294915072@1571973503294/Assembly-code-of-ASM-file.ppm
     :reveal_background_opacity: 0.4
     :END:
 
@@ -179,8 +180,10 @@ https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/2212209
     :reveal_background_opacity: 0.4
     :END:
 
-#+ATTR_REVEAL: :frag t
-… Pour un seul programme
+#+ATTR_REVEAL: :frag (t)
+- Pour la portabilité: ✓ (DLL / librairies partagées)
+- Pour le multitâches : … c'est un peu court
+- Pour la sécurité : ne suffit clairement pas
 
 #+ATTR_REVEAL: :frag t
 … sur un seul ordinateur (ou des ordinateurs tous identiques).
@@ -198,41 +201,6 @@ https://www.researchgate.net/profile/Jean-Jacques-Quisquater/publication/2212209
 - **Mode superviseur**
   #+ATTR_REVEAL: :frag (t)
   - Réserve certaines actions (ex : configurer la mémoire virtuelle) au seul système d'exploitation
-
-* Processus
-    :PROPERTIES:
-    :html_container_class: slide-background-white
-    :END:
-
-#+INCLUDE: "images/processus.svg" export html
-
-** Fautes
-    :PROPERTIES:
-    :reveal_background: https://pemptousia.com/files/2012/07/ORIGINAL-SIN2.jpg
-    :reveal_background_opacity: 0.4
-    :END:
-
-Le noyau prend la main lorsqu'un programme
-
-#+ATTR_REVEAL: :frag (t)
-- accède à une adresse virtuelle absente du TLB
-- accède dans un mode interdit (écriture, exécution)
-- exécute une instruction privilégiée
-
-** … pas forcément fatales
-    :PROPERTIES:
-    :reveal_background: https://upload.wikimedia.org/wikipedia/commons/3/3d/Chora_Church_Constantinople_2007_013.jpg
-    :reveal_background_opacity: 0.5
-    :END:
-
-Plutôt que tuer le processus, le noyau peut aussi…
-
-#+ATTR_REVEAL: :frag (t)
-- ressortir la page absente du swap, ou bien
-- *honorer un appel système*
-
-#+ATTR_REVEAL: :frag t
-... et rendre la main au programme.
 
 * Exercices
     :PROPERTIES:
