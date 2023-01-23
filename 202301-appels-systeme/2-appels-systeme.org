@@ -99,16 +99,16 @@ Plutôt que tuer le processus, le noyau peut aussi…
 
 etc.
 
-* Prison
+* Médiation totale de la causalité
     :PROPERTIES:
-    :reveal_background: https://1000idcg.com/wp-content/uploads/2019/03/%C2%AB-Connais-toi-toi-me%CC%82me-%C2%BB-Socrate.jpg
+    :reveal_background: https://i.imgur.com/kMehPAw.jpeg
     :reveal_background_size: contain
-    :reveal_background_opacity: 0.4
+    :reveal_background_opacity: 0.8
     :END:
 
-** Médiation totale de la causalité
-
+#+ATTR_REVEAL: :frag t
 Les droits inaliénables d'un processus UNIX :
+#+ATTR_REVEAL: :frag (t)
 - Exécuter son code
 - Lire / écrire ses données
 
