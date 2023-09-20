@@ -265,8 +265,10 @@ Pour plusieurs raisons, le système de paquetages n'est pas au cœur de l'extens
 
 Toujours avec [[https://jwiegley.github.io/use-package/installation/][use-package]]:
 
+#+begin_src elisp
 (use-package magit
   :bind ([(control x) (v) (b)] . magit-status))
+#+end_src
 
 {{{definitionofdone}}} : pour de meilleures performances, les paquetages «lourds» comme Magit, ne doivent *pas* se charger au démarrage d'Emacs.
 - Contrôle avec =C-h v features <RET>= : cette variable ne doit pas contenir =magit=
@@ -349,13 +351,17 @@ Exercice : que font les combinaisons de touches suivantes ?
 #+BEGIN_SRC bash
 cat > $HOME/bin/emacsedit <<SCRIPT
 #!/bin/sh
-/usr/local/Cellar/emacs-plus@28/28.1/bin/emacsclient "$@"
+/quelque/part/bin/emacsclient "$@"
 SCRIPT
 
 chmod a+x $HOME/bin/emacsedit
 export EDITOR=$HOME/bin/emacsedit
 #+END_SRC
 
+#+ATTR_REVEAL: :frag t
+⚠ Remplacer ~/quelque/part~ par le chemin d'accès correct, selon votre système d'exploitation
+
+#+ATTR_REVEAL: :frag t
 Tester avec =git commit=
 
 ** But #3 : framework(s) de complétion
@@ -368,7 +374,8 @@ Si [[#complétion][pas déjà fait]]
 - Déplacer les customizations dans un fichier à part (qu'on pourra choisir de =.gitignore= r) :
   #+BEGIN_SRC elisp
   (require 'custom)
-  (setq custom-file (concat user-emacs-directory "emacs-custom.el"))
+  (setq custom-file
+        (concat user-emacs-directory "emacs-custom.el"))
   (when (file-exists-p custom-file) (load-file custom-file))
   #+END_SRC
 
