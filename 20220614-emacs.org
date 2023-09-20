@@ -1,6 +1,6 @@
 #+TITLE: Emacs en partant de zéro
 #+SUBTITLE: https://go.epfl.ch/emacsdezero
-#+DATE: 14.06.2022
+#+DATE: 20.09.2023
 #+AUTHOR: Dominique Quatravaux
 #+EMAIL: dominique@quatravaux.org
 #+LANGUAGE: fr
