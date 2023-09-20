@@ -22,6 +22,9 @@
 #+REVEAL_TITLE_SLIDE_BACKGROUND: https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg
 #+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.3
 
+#+COMMENTÇAMARCHE: (use-package ox-reveal :quelpa)
+#+COMMENTÇAMARCHE: 2. C-c C-e R B
+
 * Chapitre 1 : autonomie
 ** Philosophie / orientation
     :PROPERTIES:
@@ -51,7 +54,7 @@ Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
 
 - Écrite avec Emacs
 - Un seul [[https://github.com/domq/domq.github.io/blob/main/20220614-emacs.org][fichier source]] (+ les images)
-- 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][org-reveal]]
+- 🔋 Grâce à [[https://orgmode.org/][🦄 org-mode]] + [[https://github.com/hexmode/ox-reveal][ox-reveal]]
 
 @@html:<p class="small">@@{{{lettrine(↕️)}}}
 Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche vers le bas {{{flecheverslebas}}} permet de naviguer vers des informations supplémentaires, que le présentateur «sautera» peut-être faute de temps.
