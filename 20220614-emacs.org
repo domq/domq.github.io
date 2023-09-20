@@ -92,7 +92,7 @@ Comme dans toute présentation [[https://revealjs.com/][reveal.js]], la flèche 
   - On peut cliquer dedans !
 
 - Plusieurs buffers à l'écran ? Pas de panique :
-  - =C-x o= @@html:<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/PublicInformationSymbol_EmergencyExit.svg/563px-PublicInformationSymbol_EmergencyExit.svg.png" style="float: right; max-height: 10vh;" />@@
+  - =C-x o= @@html:<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Japanese_Public_Information_Symbol_-_Emergency_Exit.svg/1920px-Japanese_Public_Information_Symbol_-_Emergency_Exit.svg.png" style="float: right; max-height: 10vh;" />@@
   - =C-g= ou =ESC ESC ESC= → À apprendre par cœur
 
 *** But secondaire #3.1 : déplacements à l'intérieur d'un buffer
@@ -318,7 +318,7 @@ Je consacre du temps pour maîtriser les “power features” d'Emacs 💪 :
 
 *** Je sais faire tout seul ! 5/5
     :PROPERTIES:
-    :reveal_background: https://rnli.org/-/media/rnli/images/safety/42064-yacht-sailing-view-from-onboard-boat-nathan-williams-16x9.jpg?rev=7332374b69104667a73f3429c0cf6e36&w=1500&h=844&hash=EE495B44B8DE34A21B23A0ED76BEB06D
+    :reveal_background: https://i.imgur.com/WBhYhkN.jpeg
     :reveal_background_opacity: 0.3
     :html_container_class: slide-text-white
     :END:
