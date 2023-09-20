@@ -36,7 +36,7 @@
   - Concrètement : un jeu de tests manuel (rédigé et observé)
 
 ** But #1 : installation
-- Pour le présent dojo : version minimale = Emacs 26 (celui d'Ubuntu Focal), mais plus récent ≡ mieux
+- Pour le présent dojo : version minimale = Emacs 27 (celui d'Ubuntu Jammy), mais plus récent ≡ mieux
 
 @@html:<p class="small">@@{{{lettrine(💡🥱)}}}
 Si vous vous ennuyez : cliquez sur {{{flecheverslebas}}} en bas à droite...
