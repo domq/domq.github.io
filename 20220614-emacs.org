@@ -219,7 +219,7 @@ Notre premier fragment d'Emacs Lisp «fait main» :
   3. … Profit!
 - ... Mais ça ne «tient» pas au redémarrage ☹ À suivre...
 
-*** 🤦 Pourquoi ?... 🤦
+*** 🤦 Pourquoi ça ne «tient» pas ?... 🤦
 
 Pour plusieurs raisons, le système de paquetages n'est pas au cœur de l'extensibilité d'Emacs
 - Historique : Emacs date de 1985 (CTAN : 1992, CPAN : 1995)
@@ -426,7 +426,7 @@ L'installation des paquetages a été faite à la main et n'est donc pas as-code
 (require 'quelpa-use-package)
 #+end_src
 
-[[*🤫 Quelpa silencieux 🤫][👨‍🍳 À suivre ... 🤫]]
+[[*🤫 Quelpa silencieux 🤫][👨‍🍳 À suivre... 🤫]]
 
 ** But #2 : aller plus loin avec org-mode
 
@@ -449,16 +449,9 @@ org-mode comme un outil de carnet de laboratoire :
   - hyperliens vers d'autres fichiers (comme par exemple du code source) avec =C-c C-l= :
     #+BEGIN_SRC elisp
       (global-set-key [(control c) (control l)] 'org-store-link)
-      ;; C-c C-l déjà utilisé dans d'autres modes, mais je veux la version d'org-mode
-      (dolist (cons-mode-map `((cc-mode . c-mode-base-map)
-                               (python-mode . python-mode-map)
-                               (python . python-mode-map)
-                               (sh-script . sh-mode-map)
-                               (web-mode . web-mode-map)))
-        (with-eval-after-load (car cons-mode-map)
-          (define-key (symbol-value (cdr cons-mode-map))
-            [(control c) (control l)] nil)))
     #+END_SRC
+
+[[*⌨️ Supprimer l'affectation de touches C-c C-l dans plusieurs modes ⌨️][⌨️ À suivre... ⌨️]]
 
 ** But #3 : Emacs comme IDE (1/2)
 
@@ -473,7 +466,7 @@ org-mode comme un outil de carnet de laboratoire :
   - =M-x R= (du paquetage =ess=)
   - =M-x run-python=
 - Continuer avec [[https://www.masteringemacs.org/article/how-to-get-started-tree-sitter][treesit]] pour votre langage préféré
-  - 💡 Plus besoin de recompiler... Si vous avez déjà Emacs 29 ([[https://ubuntuhandbook.org/index.php/2023/08/gnu-emacs-29-1-ubuntu-ppa/][Ubuntu]], [[https://github.com/d12frosted/homebrew-emacs-plus][Mac OS X]])
+  - 💡 Plus besoin de recompiler Emacs... Du moins si vous avez déjà la version 29 ([[https://ubuntuhandbook.org/index.php/2023/08/gnu-emacs-29-1-ubuntu-ppa/][Ubuntu]], [[https://github.com/d12frosted/homebrew-emacs-plus][Mac OS X]])
 - Pour la navigation dans la lecture du code source : [[https://www.emacswiki.org/emacs/EmacsTags][ETags]]
 
 ** But #4 : Apprendre Emacs Lisp
@@ -489,22 +482,47 @@ org-mode comme un outil de carnet de laboratoire :
 Choisir des buts de difficulté croissante :
 
 - 💪 Configurer telle variable seulement pour Emacs en mode terminal (~emacs -nw~)
+- 💪💪 Supprimer l'affectation de touches =C-c C-l= dans une pluralité de modes (avec une boucle)
 - 💪💪💪 supprimer un message perturbant avec =advice-add=
+
+*** ⌨️ Supprimer l'affectation de touches C-c C-l dans plusieurs modes ⌨️
+
+... De sorte que [[*But #2 : aller plus loin avec org-mode][=C-c C-l= d'org-mode prenne le pas]].
+
+#+BEGIN_SRC elisp
+
+(dolist (cons-mode-map `((cc-mode . c-mode-base-map)
+                         (python-mode . python-mode-map)
+                         (python . python-mode-map)
+                         (sh-script . sh-mode-map)
+                         (web-mode . web-mode-map)))
+  (with-eval-after-load (car cons-mode-map)
+    (define-key (symbol-value (cdr cons-mode-map))
+      [(control c) (control l)] nil)))
+
+#+END_SRC
+
+#+ATTR_REVEAL: :frag t
+- =(FOO . BAR)= , une autre façon d'écrire =(cons FOO BAR)=
+  #+ATTR_REVEAL: :frag t
+  - Accesseurs : =(car)= et =(cdr)=
+#+ATTR_REVEAL: :frag t
+- 🔎 =C-h C-f= sur =define-key=, =with-eval-after-load=, =symbol-value=
 
 *** 🤫 Quelpa silencieux 🤫
 
 #+ATTR_REVEAL: :frag t
-Marre des messages ~not upgrading ceci ou cela~ ?
+Marre des messages ~not upgrading~ ceci ou cela ?
 
 @@html:<div class="fragment">@@
 
-Rajouter ce fragment avant l'appel à la fonction ~(quelpa ...)~ :
-
 #+begin_src elisp
-(advice-add 'quelpa-build--message
-            :before-until #'(lambda (msg &rest ignore)
-                              (string-match-p "Not upgrading" msg))
-            '((name . quelpa-build--message--débavardage)))
+  (advice-add
+   'quelpa-build--message
+   :before-until #'(lambda (msg &rest ignore)
+                   "Ignore les messages contenant «Not upgrading»"
+                     (string-match-p "Not upgrading" msg))
+   '((name . quelpa-build--message--débavardage)))
 #+end_src
 
 @@html:</div>@@
