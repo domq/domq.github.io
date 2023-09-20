@@ -17,6 +17,7 @@
 #+REVEAL_HEAD_PREAMBLE:  .reveal ul { display: inherit; }
 #+REVEAL_HEAD_PREAMBLE:  section.slide-text-white { color: white; }
 #+REVEAL_HEAD_PREAMBLE:  p.small { font-size: 0.6em; text-align: justify; }
+#+REVEAL_HEAD_PREAMBLE:  section.slide-code-fineprint pre.src-elisp { font-size: 0.4em; }
 #+REVEAL_HEAD_PREAMBLE:  code {  color: lightblue; }
 #+REVEAL_HEAD_PREAMBLE: </style>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: https://media.mehrnews.com/d/2019/07/21/4/3185382.jpg
@@ -395,11 +396,41 @@ Pour récupérer le contenu du /register/ a (par exemple) :
 
 L'installation des paquetages a été faite à la main et n'est donc pas as-code. Frustrations prévisibles lors de la prochaine mise à jour d'Emacs…
 
-→ Solution : apprendre et mettre en œuvre [[https://github.com/radian-software/straight.el][straight]] qui s'intègre avec =use-package=
+@@html:<div class="fragment">@@
+
+→ Solution : apprendre et mettre en œuvre [[https://github.com/quelpa/quelpa][quelpa]] et [[https://github.com/quelpa/quelpa-use-package][quelpa-use-package]]
+
+@@html:</div>@@
+
+*** Solution de la solution
+    :PROPERTIES:
+    :html_container_class: slide-code-fineprint
+    :END:
+
+#+begin_src elisp
+;; Nous nous appuyons sur use-package et quelpa (et quelpa-use-package).
+;; ⚠ Sur Mac OS X, il faut d'abord installer GNU tar (`brew install
+;; gnu-tar`)! Voir https://github.com/quelpa/quelpa/issues/221
+(unless (package-installed-p 'quelpa)
+      (with-temp-buffer
+        (url-insert-file-contents
+         "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+        (eval-buffer)
+        (quelpa-self-upgrade)))
+(setq quelpa-update-melpa-p nil)
+(require 'quelpa)
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+(require 'quelpa-use-package)
+#+end_src
+
+[[*🤫 Quelpa silencieux 🤫][👨‍🍳 À suivre ... 🤫]]
 
 ** But #2 : aller plus loin avec org-mode
 
-org-mode pour les présentations : [[https://github.com/hexmode/ox-reveal][org-reveal]]
+org-mode pour les présentations : [[https://github.com/hexmode/ox-reveal][ox-reveal]]
 
 *** But #2 : aller plus loin avec org-mode
 
@@ -433,7 +464,7 @@ org-mode comme un outil de carnet de laboratoire :
 
 … Ce n'est pas le plus simple.
 
-- En 2022, Emacs ne peut pas espérer régater avec IntelliJ (par exemple) sur le plan des fonctionnalités
+- En 2023, Emacs ne peut pas espérer régater avec IntelliJ (par exemple) sur le plan des fonctionnalités
 - … Mais il reste plus rapide, et peut donc aider les “power users”.
 
 *** But #3 : Emacs comme IDE (2/2)
@@ -441,7 +472,8 @@ org-mode comme un outil de carnet de laboratoire :
 - Commencer par le [[https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop][REPL]] d'un langage de script :
   - =M-x R= (du paquetage =ess=)
   - =M-x run-python=
-- Continuer avec [[https://github.com/emacs-lsp/lsp-mode][LSP]] pour votre langage préféré
+- Continuer avec [[https://www.masteringemacs.org/article/how-to-get-started-tree-sitter][treesit]] pour votre langage préféré
+  - 💡 Plus besoin de recompiler... Si vous avez déjà Emacs 29 ([[https://ubuntuhandbook.org/index.php/2023/08/gnu-emacs-29-1-ubuntu-ppa/][Ubuntu]], [[https://github.com/d12frosted/homebrew-emacs-plus][Mac OS X]])
 - Pour la navigation dans la lecture du code source : [[https://www.emacswiki.org/emacs/EmacsTags][ETags]]
 
 ** But #4 : Apprendre Emacs Lisp
@@ -451,5 +483,34 @@ org-mode comme un outil de carnet de laboratoire :
 - Choisir un dialecte «moderne»
   - [[https://www.gnu.org/software/emacs/manual/html_mono/cl.html][Paquetage cl]]
   - =lexical-binding: t=
-- Choisir des premiers buts simples, comme
-  - supprimer un message perturbant avec =advice-add=
+
+** But #4 : Apprendre Emacs Lisp
+
+Choisir des buts de difficulté croissante :
+
+- 💪 Configurer telle variable seulement pour Emacs en mode terminal (~emacs -nw~)
+- 💪💪💪 supprimer un message perturbant avec =advice-add=
+
+*** 🤫 Quelpa silencieux 🤫
+
+#+ATTR_REVEAL: :frag t
+Marre des messages ~not upgrading ceci ou cela~ ?
+
+@@html:<div class="fragment">@@
+
+Rajouter ce fragment avant l'appel à la fonction ~(quelpa ...)~ :
+
+#+begin_src elisp
+(advice-add 'quelpa-build--message
+            :before-until #'(lambda (msg &rest ignore)
+                              (string-match-p "Not upgrading" msg))
+            '((name . quelpa-build--message--débavardage)))
+#+end_src
+
+@@html:</div>@@
+
+@@html:<div class="fragment">@@
+
+👨‍🍳 [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Advising-Functions.html][~advice-add~ 🔗]], pour patcher à la volée les fonctions écrites par d'autres !
+
+@@html:</div>@@
