@@ -305,10 +305,12 @@ J'évalue, configure et choisis un ou des frameworks de complétion :
   - company (recommandé)
   - ido
   - auto-complete
+  - Corfu
   - (Old and busted: icicles, icomplete)
 - Moar completion?
   - Helm
   - yasnippet
+  - [[https://www.youtube.com/watch?v=-MhSXU6Tx28][Etc. 🎬]]
 
 *** Je sais faire tout seul ! 4/5
 
