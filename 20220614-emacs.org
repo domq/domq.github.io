@@ -271,7 +271,7 @@ Toujours avec [[https://jwiegley.github.io/use-package/installation/][use-packag
 #+end_src
 
 {{{definitionofdone}}} : pour de meilleures performances, les paquetages «lourds» comme Magit, ne doivent *pas* se charger au démarrage d'Emacs.
-- Contrôle avec =C-h v features <RET>= : cette variable ne doit pas contenir =magit=
+- Contrôle avec =C-h v features <RET>= : dans votre Emacs fraîchement redémarré, cette variable ne doit pas contenir =magit=
 
 ** Je sais faire tout seul ! 1/5
     :PROPERTIES:
